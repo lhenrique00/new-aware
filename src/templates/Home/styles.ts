@@ -11,6 +11,23 @@ export const Container = styled.div`
   margin: auto;
 `
 
+export const ColumnWrapper = styled.div`
+  display: inline-flex;
+  flex-wrap: nowrap;
+`
+
+export const Item = styled.div`
+  background-color: red;
+`
+
+export const Column = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 50%;
+  height: 100%;
+`
+
 export const Title = styled(animated.h1)`
   ${({ theme }) => css`
     color: ${theme.colors.primary};

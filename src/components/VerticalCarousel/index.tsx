@@ -9,7 +9,7 @@ import Slider, { SliderSettings } from '@/components/Slider'
 import * as S from './styles'
 
 const commonSettings: SliderSettings = {
-  infinite: false,
+  infinite: true,
   lazyLoad: 'ondemand',
   arrows: true,
   nextArrow: <ArrowRight aria-label="next image" />,
@@ -18,46 +18,15 @@ const commonSettings: SliderSettings = {
 
 const settings: SliderSettings = {
   ...commonSettings,
+
+  dots: true,
+  infinite: true,
   slidesToShow: 1,
   slidesToScroll: 1,
-  dots: false,
-  infinite: true,
-  autoplay: false,
-  speed: 900,
-  responsive: [
-    {
-      breakpoint: 1250,
-      settings: {
-        arrows: false,
-        slidesToShow: 1,
-        centerMode: true,
-        draggable: true,
-        autoplaySpeed: 4000
-      }
-    },
-    {
-      breakpoint: 1024,
-      settings: {
-        arrows: false,
-        slidesToShow: 1,
-        centerMode: true,
-        draggable: true,
-        autoplaySpeed: 4000
-      }
-    },
-    {
-      breakpoint: 768,
-      settings: {
-        arrows: false,
-        centerMode: true,
-        infinite: true,
-        slidesToShow: 1,
-        draggable: true,
-        autoplay: true,
-        autoplaySpeed: 6000
-      }
-    }
-  ]
+  vertical: true,
+  verticalSwiping: true,
+  autoplay: true,
+  speed: 900
 }
 
 export type VerticalCardCarouselSliderProps = {
