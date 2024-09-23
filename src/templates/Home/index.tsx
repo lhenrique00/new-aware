@@ -4,7 +4,8 @@ import * as S from './styles'
 import { useState, useRef } from 'react'
 import { Container } from '@/components/Container'
 import VerticalCarousel from '@/components/VerticalCarousel'
-
+import Image from 'next/image'
+import { useSpringCarousel } from 'react-spring-carousel'
 const Home = () => {
   const [open, setOpen] = useState(true)
 
@@ -45,6 +46,55 @@ const Home = () => {
     [0, 0.4, 1] // Set delay between the animations
   )
 
+  const { carouselFragment, slideToPrevItem, slideToNextItem } =
+    useSpringCarousel({
+      carouselSlideAxis: 'y',
+      withLoop: true,
+      itemsPerSlide: 1,
+      items: [
+        {
+          id: 'item-1',
+          renderItem: (
+            <S.Item>
+              <h1>Item 1</h1>
+            </S.Item>
+          )
+        },
+        {
+          id: 'item-2',
+          renderItem: (
+            <S.Item>
+              <h1>Item 2</h1>
+            </S.Item>
+          )
+        },
+        {
+          id: 'item-3',
+          renderItem: (
+            <S.Item>
+              <h1>Item 3</h1>
+            </S.Item>
+          )
+        },
+        {
+          id: 'item-4',
+          renderItem: (
+            <S.Item>
+              <h1>Item 4</h1>
+            </S.Item>
+          )
+        },
+        {
+          id: 'item-5',
+          renderItem: (
+            <S.Item>
+              <h1>Item 5</h1>
+            </S.Item>
+          )
+        }
+      ]
+    })
+
   return (
     <Base>
       <Container>
@@ -61,49 +111,39 @@ const Home = () => {
               Transparência e comprometimento com você e sua empresa
             </S.Description>
           </S.Column>
-          <S.Column>
-            <VerticalCarousel>
-              <S.Item>
-                <h1>1</h1>
-                <h1>1</h1>
-                <h1>1</h1>
-                <h1>1</h1>
-              </S.Item>
-              <S.Item>
-                <h1>2</h1>
-                <h1>2</h1>
-                <h1>2</h1>
-                <h1>2</h1>
-              </S.Item>
-              <S.Item>
-                <h1>3</h1>
-                <h1>3</h1>
-                <h1>3</h1>
-                <h1>3</h1>
-              </S.Item>
-              <S.Item>
-                <h1>4</h1>
-                <h1>4</h1>
-                <h1>4</h1>
-                <h1>4</h1>
-                <h1>4</h1>
-              </S.Item>
-              <S.Item>
-                <h1>5</h1>
-                <h1>5</h1>
-                <h1>5</h1>
-                <h1>5</h1>
-                <h1>5</h1>
-              </S.Item>
-              <S.Item>
-                <h1>6</h1>
-                <h1>6</h1>
-                <h1>6</h1>
-                <h1>6</h1>
-              </S.Item>
-            </VerticalCarousel>
-          </S.Column>
         </S.ColumnWrapper>
+      </Container>
+      <S.CarouselWrapper>
+        <S.PrevButton onClick={slideToPrevItem}>Prev item</S.PrevButton>
+        <S.NextButton onClick={slideToNextItem}>Next item</S.NextButton>
+        <S.CarouselDiv>
+          <S.ItemsWrapper>{carouselFragment}</S.ItemsWrapper>
+        </S.CarouselDiv>
+      </S.CarouselWrapper>
+      <hr />
+      <Container>
+        <h1>teste</h1>
+        <h1>teste</h1>
+        <h1>teste</h1>
+        <h1>teste</h1>
+        <h1>teste</h1>
+        <h1>teste</h1>
+        <h1>teste</h1>
+        <h1>teste</h1>
+        <h1>teste</h1>
+        <h1>teste</h1>
+        <h1>teste</h1>
+        <h1>teste</h1>
+        <h1>teste</h1>
+        <h1>teste</h1>
+        <h1>teste</h1>
+        <h1>teste</h1>
+        <h1>teste</h1>
+        <h1>teste</h1>
+        <h1>teste</h1>
+        <h1>teste</h1>
+        <h1>teste</h1>
+        <h1>teste</h1>
       </Container>
     </Base>
   )

@@ -20,6 +20,12 @@ export const Wrapper = styled.section`
     -webkit-tap-highlight-color: transparent;
   }
 
+  ${media.lessThan('large')`
+    .slick-slider {
+      height: 40vh;
+    }
+  `}
+
   .slick-list {
     position: relative;
     width: 100%;
