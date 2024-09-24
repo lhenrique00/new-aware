@@ -2,6 +2,10 @@ import styled, { css } from 'styled-components'
 import media from 'styled-media-query'
 import { animated } from '@react-spring/web'
 
+interface ItemProps {
+  isActive: boolean
+}
+
 export const ColumnWrapper = styled.div`
   display: flex;
   width: 100%;
@@ -16,31 +20,130 @@ export const Column = styled.div`
 `
 
 export const CarouselWrapper = styled.div`
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 40%;
-  height: 95vh;
-  display: flex;
-  flex-direction: column;
+  ${({ theme }) => css`
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 45%;
+    height: 95vh;
+    display: flex;
+    flex-direction: column;
+    .use-spring-carousel-item {
+      flex: 3 !important;
+    }
+  `}
+`
 
-  .use-spring-carousel-item {
-    flex: 3 !important;
+export const InfoWrapper = styled.div`
+  padding: 4rem;
+  z-index: 11;
+  height: 100%;
+  ${media.lessThan('large')`
+    padding: 1rem;
+  `}
+`
+
+export const InfoTitle = styled.h1`
+  ${({ theme }) => css`
+    color: ${theme.colors.white};
+    text-transform: uppercase;
+    font-weight: ${theme.font.bold};
+    font-size: 3vw;
+    line-height: auto;
+    padding-top: 0;
+    margin-bottom: 0;
+    transition: all 0.5s ease;
+    ${media.lessThan('large')`
+      width: 90%;
+      line-height: 3rem;
+      font-size: ${theme.font.sizes.huge};
+      margin-top: 0;
+    `}
+  `}
+`
+
+export const InfoDescription = styled.h2`
+  ${({ theme }) => css`
+    width: 60%;
+    position: absolute;
+    bottom: -14rem;
+    color: ${theme.colors.white};
+    text-transform: uppercase;
+    font-weight: ${theme.font.light};
+    font-size: ${theme.font.sizes.medium};
+    line-height: auto;
+    margin-top: 4rem;
+    transition: all 0.5s ease;
+    ${media.lessThan('large')`
+      width: 90%;
+      line-height: 3rem;
+      font-size: ${theme.font.sizes.huge};
+      margin-top: 0;
+    `}
+  `}
+`
+
+export const Overlay = styled.div`
+  ${({ theme }) => css`
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-bottom: 4px solid ${theme.colors.mainBg};
+  `}
+`
+
+export const Item = styled.div<ItemProps>`
+  ${({ theme }) => css`
+    display: flex;
+    width: 100%;
+    height: 1vh;
+    border-top: 4px solid ${theme.colors.mainBg};
+    margin-top: 20rem;
+    margin-bottom: 20rem;
+    text-align: left;
+    opacity: ${({ isActive }: any) => (isActive ? 1 : 0.5)};
+    padding: 0;
+    ${Overlay} {
+      opacity: ${({ isActive }: any) => (isActive ? 1 : 0)};
+    }
+    ${InfoWrapper} {
+      display: ${({ isActive }: any) => (isActive ? 'flex' : 'none')};
+    }
+    ${media.lessThan('medium')`
+      width: 70%;
+      height: 36rem;
+      padding-bottom: 4rem;
+      margin-right: 0;
+      margin-left: 0;
+    `}
+  `}
+`
+
+export const ArrowWrapper = styled.div`
+  position: absolute;
+  bottom: 2rem;
+  left: -5rem;
+  p {
+    text-align: center;
+    margin: auto;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  svg {
+    width: 2rem;
   }
 `
 
 export const PrevButton = styled.div`
-  position: absolute;
-  bottom: 0;
+  position: relative;
   z-index: 999;
-  left: -10rem;
 `
 
 export const NextButton = styled.div`
-  position: absolute;
-  bottom: 5rem;
+  position: relative;
   z-index: 999;
-  left: -10rem;
 `
 
 export const Wrapper = styled.div`
@@ -68,10 +171,10 @@ export const Title = styled(animated.h1)`
   ${({ theme }) => css`
     color: ${theme.colors.primary};
     text-transform: uppercase;
-    font-weight: ${theme.font.extraBold};
-    font-size: 8rem;
+    font-weight: ${theme.font.bold};
+    font-size: 14rem;
     line-height: 6rem;
-    padding-top: 0;
+    padding-top: 4rem;
     margin-bottom: 0;
     transition: all 0.5s ease;
     ${media.lessThan('large')`
@@ -87,11 +190,11 @@ export const SubTitle = styled(animated.h1)`
   ${({ theme }) => css`
     color: ${theme.colors.primary};
     text-transform: uppercase;
-    font-weight: ${theme.font.bold};
-    font-size: 5.4rem;
+    font-weight: ${theme.font.normal};
+    font-size: 9.23rem;
     line-height: 6rem;
     padding-top: 0;
-    margin-bottom: 0;
+    margin-top: 5rem;
     transition: all 0.5s ease;
     ${media.lessThan('large')`
       width: 90%;
@@ -104,13 +207,13 @@ export const SubTitle = styled(animated.h1)`
 
 export const Description = styled(animated.h2)`
   ${({ theme }) => css`
+    width: 55%;
     color: ${theme.colors.primary};
     text-transform: uppercase;
     font-weight: ${theme.font.light};
-    font-size: ${theme.font.sizes.medium};
-    line-height: 6rem;
-    padding-top: 0;
-    margin-bottom: 0;
+    font-size: ${theme.font.sizes.large};
+    line-height: auto;
+    margin-top: 4rem;
     transition: all 0.5s ease;
     ${media.lessThan('large')`
       width: 90%;
@@ -121,41 +224,12 @@ export const Description = styled(animated.h2)`
   `}
 `
 
-export const Item = styled.div`
-  ${({ theme }) => css`
-    display: flex;
-    width: 100%;
-    height: 36vh;
-    text-align: left;
-    padding: 0;
-    border-radius: 5px;
-    margin-bottom: 1rem;
-    background-color: ${theme.colors.primary};
-    ${media.lessThan('medium')`
-      width: 70%;
-      height: 36rem;
-      padding-bottom: 4rem;
-      margin-right: 0;
-      margin-left: 0;
-    `}
-  `}
-`
-
-export const InfoWrapper = styled.div`
-  padding: 2rem;
-  ${media.lessThan('large')`
-    padding: 1rem;
-  `}
-`
-
 export const imageWrapper = styled.div`
-  position: relative;
-  width: auto;
-  height: 40rem;
+  position: absolute;
+  width: 100%;
+  height: 100%;
   margin: auto;
-  img {
-    border-radius: 5px;
-  }
+  overflow: hidden;
   ${media.lessThan('huge')`
     height: 40rem;
   `}

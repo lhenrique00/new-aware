@@ -44,8 +44,8 @@ const Menu = ({ color = 'primary' }: MenuProps) => {
           <Image
             src="/images/logobew.png"
             alt="Logo Aware Soluções"
-            width={150}
-            height={100}
+            width={130}
+            height={80}
           />
         </Link>
       </S.LogoWrapper>
@@ -57,6 +57,9 @@ const Menu = ({ color = 'primary' }: MenuProps) => {
           </Link>
           <Link href="/sobre" passHref>
             <S.MenuLink color={color}>Sobre</S.MenuLink>
+          </Link>
+          <Link href="/servicos" passHref>
+            <S.MenuLink color={color}>Serviços</S.MenuLink>
           </Link>
           <Link href="/contato" passHref>
             <S.MenuLink color={color}>Contato</S.MenuLink>
@@ -85,6 +88,11 @@ const Menu = ({ color = 'primary' }: MenuProps) => {
           <S.Column>
             <Link href="/sobre" passHref>
               <S.Title onClick={() => setIsOpen(false)}>Sobre</S.Title>
+            </Link>
+          </S.Column>
+          <S.Column>
+            <Link href="/servicos" passHref>
+              <S.Title onClick={() => setIsOpen(false)}>Serviços</S.Title>
             </Link>
           </S.Column>
           <S.Column>

@@ -36,7 +36,7 @@ export const Title = styled.h2`
 
 export const LogoWrapper = styled.div`
   position: absolute;
-  top: 2rem;
+  top: 3rem;
   left: 10rem;
   z-index: 997;
   ${media.lessThan('large')`
@@ -64,7 +64,7 @@ export const MenuLink = styled.p`
   ${({ theme }) => css`
     color: ${theme.colors.primary};
     font-size: ${theme.font.sizes.large};
-    margin: 0 ${theme.spacings.xsmall} 0;
+    margin: 0 ${theme.spacings.medium} 0;
     text-decoration: none;
     font-weight: ${theme.font.bold};
     text-transform: uppercase;
