@@ -1,6 +1,5 @@
 // components/Layout.tsx
 import React from 'react'
-import * as S from './styles'
 
 interface LayoutProps {
   children: React.ReactNode

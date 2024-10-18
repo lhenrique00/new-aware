@@ -6,44 +6,29 @@ interface ItemProps {
   isActive: boolean
 }
 
-export const ColumnWrapper = styled.div`
-  display: flex;
+export const CarouselWrapper = styled.div`
+  position: relative;
+  margin-top: -15rem;
+  right: 0;
   width: 100%;
-`
-
-export const Column = styled.div`
+  height: 95vh;
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
-  width: 40%;
-  height: 100%;
-`
-
-export const CarouselWrapper = styled.div`
-  ${({ theme }) => css`
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 45%;
-    height: 95vh;
-    display: flex;
-    flex-direction: column;
-    .use-spring-carousel-item {
-      flex: 3 !important;
-    }
-  `}
+  .use-spring-carousel-item {
+    flex: 3 !important;
+  }
 `
 
 export const InfoWrapper = styled.div`
   padding: 4rem;
   z-index: 11;
   height: 100%;
-  ${media.lessThan('large')`
-    padding: 1rem;
+  ${media.lessThan('small')`
+    padding: 2rem;
   `}
 `
 
-export const InfoTitle = styled.h1`
+export const InfoTitle = styled(animated.h1)`
   ${({ theme }) => css`
     color: ${theme.colors.white};
     text-transform: uppercase;
@@ -53,7 +38,7 @@ export const InfoTitle = styled.h1`
     padding-top: 0;
     margin-bottom: 0;
     transition: all 0.5s ease;
-    ${media.lessThan('large')`
+    ${media.lessThan('small')`
       width: 90%;
       line-height: 3rem;
       font-size: ${theme.font.sizes.huge};
@@ -64,17 +49,21 @@ export const InfoTitle = styled.h1`
 
 export const InfoDescription = styled.h2`
   ${({ theme }) => css`
-    width: 60%;
+    width: 34%;
     position: absolute;
     bottom: -14rem;
     color: ${theme.colors.white};
     text-transform: uppercase;
-    font-weight: ${theme.font.light};
-    font-size: ${theme.font.sizes.medium};
+    font-weight: ${theme.font.normal};
+    font-size: ${theme.font.sizes.large};
     line-height: auto;
     margin-top: 4rem;
     transition: all 0.5s ease;
-    ${media.lessThan('large')`
+    ${media.lessThan('huge')`
+      width: 45%;
+      bottom: -8rem;
+    `}
+    ${media.lessThan('small')`
       width: 90%;
       line-height: 3rem;
       font-size: ${theme.font.sizes.huge};
@@ -91,6 +80,10 @@ export const Overlay = styled.div`
     position: absolute;
     background-color: rgba(0, 0, 0, 0.5);
     border-bottom: 4px solid ${theme.colors.mainBg};
+    ${media.lessThan('huge')`
+      width: 100%;
+      height: 100%;
+    `}
   `}
 `
 
@@ -111,6 +104,11 @@ export const Item = styled.div<ItemProps>`
     ${InfoWrapper} {
       display: ${({ isActive }: any) => (isActive ? 'flex' : 'none')};
     }
+    ${media.lessThan('huge')`
+      height: 12vh;
+      margin-top: 10rem;
+      margin-bottom: 10rem;
+    `}
     ${media.lessThan('medium')`
       width: 70%;
       height: 36rem;
@@ -123,32 +121,76 @@ export const Item = styled.div<ItemProps>`
 
 export const ArrowWrapper = styled.div`
   position: absolute;
-  bottom: 2rem;
+  bottom: 2.5rem;
   left: -5rem;
   p {
+    font-weight: bold;
     text-align: center;
     margin: auto;
     margin-top: 1rem;
     margin-bottom: 1rem;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
   }
   svg {
     width: 2rem;
   }
 `
 
+export const Button = styled.div`
+  ${({ theme }) => css`
+    position: absolute;
+    bottom: -14rem;
+    right: 5rem;
+    border-radius: 50%;
+    padding: 0.7rem;
+    opacity: 0.5;
+    border: 1px solid ${theme.colors.white};
+    background-color: transparent;
+    cursor: pointer;
+    z-index: 50;
+    width: 4rem;
+    height: 4rem;
+    transition: all 0.2s ease-in;
+    &:hover {
+      opacity: 1;
+    }
+    svg {
+      color: ${theme.colors.white};
+      background-color: transparent;
+      border-radius: 50%;
+      padding: 0.1rem;
+      transition: all 0.2s ease-in;
+    }
+    ${media.lessThan('huge')`
+      bottom: -8rem;
+    `}
+    ${media.lessThan('small')`
+      bottom: 5rem;
+      right: 2rem;
+      svg {
+        border-radius: 50%;
+        padding: 0.2rem;
+      }
+    `}
+  `}
+`
+
 export const PrevButton = styled.div`
   position: relative;
   z-index: 999;
+  cursor: pointer;
 `
 
 export const NextButton = styled.div`
   position: relative;
   z-index: 999;
-`
-
-export const Wrapper = styled.div`
-  display: flex;
-  width: 100%;
+  cursor: pointer;
 `
 
 export const CarouselDiv = styled.div`
@@ -165,63 +207,8 @@ export const ItemsWrapper = styled.div`
   background-color: transparent;
   overflow: hidden;
   position: relative;
-`
 
-export const Title = styled(animated.h1)`
-  ${({ theme }) => css`
-    color: ${theme.colors.primary};
-    text-transform: uppercase;
-    font-weight: ${theme.font.bold};
-    font-size: 14rem;
-    line-height: 6rem;
-    padding-top: 4rem;
-    margin-bottom: 0;
-    transition: all 0.5s ease;
-    ${media.lessThan('large')`
-      width: 90%;
-      line-height: 3rem;
-      font-size: ${theme.font.sizes.huge};
-      margin-top: 0;
-    `}
-  `}
-`
-
-export const SubTitle = styled(animated.h1)`
-  ${({ theme }) => css`
-    color: ${theme.colors.primary};
-    text-transform: uppercase;
-    font-weight: ${theme.font.normal};
-    font-size: 9.23rem;
-    line-height: 6rem;
-    padding-top: 0;
-    margin-top: 5rem;
-    transition: all 0.5s ease;
-    ${media.lessThan('large')`
-      width: 90%;
-      line-height: 3rem;
-      font-size: ${theme.font.sizes.huge};
-      margin-top: 0;
-    `}
-  `}
-`
-
-export const Description = styled(animated.h2)`
-  ${({ theme }) => css`
-    width: 55%;
-    color: ${theme.colors.primary};
-    text-transform: uppercase;
-    font-weight: ${theme.font.light};
-    font-size: ${theme.font.sizes.large};
-    line-height: auto;
-    margin-top: 4rem;
-    transition: all 0.5s ease;
-    ${media.lessThan('large')`
-      width: 90%;
-      line-height: 3rem;
-      font-size: ${theme.font.sizes.huge};
-      margin-top: 0;
-    `}
-  `}
+  cursor: grab;
 `
 
 export const imageWrapper = styled.div`
@@ -231,11 +218,6 @@ export const imageWrapper = styled.div`
   margin: auto;
   overflow: hidden;
   ${media.lessThan('huge')`
-    height: 40rem;
-  `}
-  ${media.lessThan('large')`
-    width: auto;
-    height: 28rem;
-    width: 100%;
+    height: 100%;
   `}
 `

@@ -1,18 +1,22 @@
 import styled, { css } from 'styled-components'
 import media from 'styled-media-query'
 
+type WrapperProps = {
+  isNotSpecificRoutes: boolean
+}
+
 export const Wrapper = styled.menu`
   ${({ theme }) => css`
     display: flex;
     align-items: center;
-    background-color: transparent;
     padding: 0;
     position: relative;
     z-index: ${theme.layers.menu};
-    ${media.lessThan('large')`
+    transition: background-color 0.3s ease-in-out;
+
+    ${media.lessThan('medium')`
       margin-left: 0;
       padding: 2rem;
-
     `}
   `}
 `
@@ -39,7 +43,7 @@ export const LogoWrapper = styled.div`
   top: 3rem;
   left: 10rem;
   z-index: 997;
-  ${media.lessThan('large')`
+  ${media.lessThan('medium')`
     top: 2rem;
     left: 2rem;
     z-index: 0;
@@ -60,22 +64,29 @@ export const MenuGroup = styled.div`
   }
 `
 
-export const MenuLink = styled.p`
-  ${({ theme }) => css`
+export const MenuLink = styled.p<WrapperProps>`
+  ${({ theme, isNotSpecificRoutes }) => css`
     color: ${theme.colors.primary};
+    color: ${isNotSpecificRoutes ? theme.colors.white : theme.colors.primary};
     font-size: ${theme.font.sizes.large};
     margin: 0 ${theme.spacings.medium} 0;
     text-decoration: none;
     font-weight: ${theme.font.bold};
     text-transform: uppercase;
     transition: all 0.5s ease;
+    ${media.lessThan('huge')`
+      margin-left: 0;
+      font-size: ${theme.font.sizes.medium};
+    `}
     ${media.lessThan('large')`
       margin-left: 0;
       font-size: ${theme.font.sizes.small};
     `}
     &:after {
       content: '';
-      background: ${theme.colors.primary};
+      background: ${isNotSpecificRoutes
+        ? theme.colors.white
+        : theme.colors.primary};
       display: block;
       position: relative;
       bottom: 0;
@@ -94,9 +105,8 @@ export const MenuLink = styled.p`
   `}
 `
 
-export const MenuSubLink = styled.p`
-  ${({ theme }) => css`
-    color: ${theme.colors.primary};
+export const MenuSubLink = styled.p<WrapperProps>`
+  ${({ theme, isNotSpecificRoutes }) => css`
     font-size: ${theme.font.sizes.large};
     margin: 0 ${theme.spacings.xsmall} 0;
     text-decoration: none;
@@ -108,7 +118,9 @@ export const MenuSubLink = styled.p`
     `}
     &:after {
       content: '';
-      background: ${theme.colors.white};
+      background: ${isNotSpecificRoutes
+        ? theme.colors.white
+        : theme.colors.primary};
       display: block;
       position: relative;
       bottom: 0;
@@ -129,7 +141,7 @@ export const MenuSubLink = styled.p`
 
 export const MenuNav = styled.div`
   width: 100%;
-  ${media.greaterThan('large')`
+  ${media.greaterThan('medium')`
     width: 65%;
   `}
 `
@@ -147,7 +159,7 @@ export const DropDownListContainer = styled.div`
   text-transform: capitalize;
   padding-bottom: 1rem;
   padding-left: 0.8rem;
-  ${media.lessThan('medium')`
+  ${media.lessThan('large')`
     padding-left: 0rem;
     text-align: center;
   `}
@@ -187,7 +199,7 @@ export const DropDownHeader = styled.h2<MenuHeaderFullProps>`
       transform: ${ToggleOpen ? 'rotate(90deg)' : 'rotate(0deg)'};
       transition: transform 0.3s ease-in-out;
     }
-    ${media.lessThan('medium')`
+    ${media.lessThan('large')`
       margin-top: 0;
       margin-bottom: 2rem;
       margin-left: 0;
@@ -301,7 +313,7 @@ export const MenuFull = styled.nav<MenuFullProps>`
       left: 50%;
       transform: translate(-50%, -50%);
       grid-template-columns: repeat(2, 2fr);
-      ${media.lessThan('large')`
+      ${media.lessThan('medium')`
       display: flex;
       flex-direction: column;
         top: 15rem;
@@ -318,11 +330,11 @@ export const MenuFull = styled.nav<MenuFullProps>`
       text-decoration: none;
       font-weight: ${theme.font.bold};
       text-transform: uppercase;
-      ${media.lessThan('large')`
+      ${media.lessThan('medium')`
         font-size: ${theme.font.sizes.small};
       `}
     }
-    ${media.lessThan('large')`
+    ${media.lessThan('medium')`
       width: 100%;
       height: ${isOpen ? '100%' : '0%'};
     `}
@@ -332,7 +344,7 @@ export const MenuFull = styled.nav<MenuFullProps>`
 export const Column = styled.div`
   display: flex;
   flex-direction: column;
-  ${media.lessThan('large')`
+  ${media.lessThan('medium')`
     margin-right: 2.5rem;
   `}
 `
@@ -359,7 +371,7 @@ export const Button = styled.div`
       text-transform: uppercase;
       margin: auto;
     }
-    ${media.lessThan('large')`
+    ${media.lessThan('medium')`
       position: relative;
       width: auto;
       right: 0;
@@ -388,11 +400,11 @@ export const StyledLi = styled.div`
   margin: 0rem;
 `
 
-export const DropDownLi = styled(StyledLi)`
-  ${({ theme }) => css`
+export const DropDownLi = styled(StyledLi)<WrapperProps>`
+  ${({ theme, isNotSpecificRoutes }) => css`
     display: inline-block;
     ${MenuSubLink} {
-      color: ${theme.colors.primary};
+      color: ${isNotSpecificRoutes ? theme.colors.white : theme.colors.primary};
     }
     &:hover {
       cursor: pointer;
@@ -407,35 +419,17 @@ export const DropDownLi = styled(StyledLi)`
         text-align: left;
         margin-bottom: 1rem;
         font-size: ${theme.font.sizes.medium};
-        &:hover {
-          &::after {
-            content: '';
-            position: absolute;
-            left: 1.6rem;
-            display: block;
-            height: 0.1rem;
-            background-color: ${theme.colors.primary};
-            animation: hoverAnimation 0.2s forwards;
-          }
-          @keyframes hoverAnimation {
-            from {
-              width: 0;
-            }
-            to {
-              width: 80%;
-            }
-          }
-        }
       }
     }
   `}
 `
 
-export const DropDownContent = styled.div`
-  ${({ theme }) => css`
+export const DropDownContent = styled.div<WrapperProps>`
+  ${({ theme, isNotSpecificRoutes }) => css`
     display: none;
     position: absolute;
-    background-color: ${theme.colors.mainBg};
+    margin-left: 1.5rem;
+    background: ${isNotSpecificRoutes ? 'transparent' : theme.colors.mainBg};
     min-width: 160px;
     z-index: 999;
   `}

@@ -36,7 +36,9 @@ const GlobalStyles = createGlobalStyle`
     }
 
     body {
+      background-color: ${theme.colors.mainBg};
       font-size: ${theme.font.sizes.medium};
+      overflow-x: hidden;
     }
   `}
 `
