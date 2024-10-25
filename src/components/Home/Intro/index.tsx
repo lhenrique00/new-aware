@@ -6,14 +6,17 @@ import { Container } from '@/components/Container'
 import Link from 'next/link'
 import { ArrowRight } from '@styled-icons/fluentui-system-regular/ArrowRight'
 import Social from '@/components/Social'
-import IntroCarousel from '../IntroCarousel'
+import BannerSlider from '@/components/Home/BannerSlider'
+import { BannerProps } from '@/components/Banner'
+import MediaMatch from '@/components/MediaMatch'
 
 export type IntroProps = {
   color?: 'white' | 'primary'
+  banners: BannerProps[]
 }
 
-const HomeIntro = ({ color = 'primary' }: IntroProps) => {
-  const [open, setOpen] = useState(true)
+const HomeIntro = ({ color = 'primary', banners }: IntroProps) => {
+  const [open] = useState(true)
 
   // Create references for each animation
   const titleRef = useSpringRef()
@@ -57,30 +60,34 @@ const HomeIntro = ({ color = 'primary' }: IntroProps) => {
       <Container>
         <S.ColumnWrapper>
           <S.Column>
-            {/* Animated Title */}
             <S.Title style={titleSpring}>Aware </S.Title>
-
-            {/* Animated Subtitle */}
             <S.SubTitle style={subtitleSpring}>Soluções</S.SubTitle>
-
-            {/* Animated Description */}
             <S.Description style={descriptionSpring}>
               <b>Transparência</b> e <b>comprometimento</b> com <b>você</b> e
               sua <b>empresa.</b>
             </S.Description>
-            <Link href="/contato">
-              <S.ContactButton>
-                <p>Entrar em contato</p>
-                <ArrowRight />
-              </S.ContactButton>
-            </Link>
+            <MediaMatch greaterThan="small">
+              <Link href="/contato">
+                <S.ContactButton>
+                  <p>Entrar em contato</p>
+                  <ArrowRight />
+                </S.ContactButton>
+              </Link>
+            </MediaMatch>
           </S.Column>
           <S.Column>
-            <IntroCarousel />
+            <BannerSlider items={banners} />
           </S.Column>
         </S.ColumnWrapper>
+        <MediaMatch lessThan="small">
+          <Link href="/contato">
+            <S.ContactButton>
+              <p>Entrar em contato</p>
+              <ArrowRight />
+            </S.ContactButton>
+          </Link>
+        </MediaMatch>
       </Container>
-
       <hr />
       <S.SocialWrapper>
         <Social color={color} />

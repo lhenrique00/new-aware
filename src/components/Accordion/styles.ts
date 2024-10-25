@@ -22,7 +22,8 @@ export const DuvidasSection = styled.section`
     width: 50%;
   `}
   ${media.lessThan('large')`
-    width: 90%;
+    width: auto;
+    margin-left: 2rem;
   `}
 `
 
@@ -44,7 +45,10 @@ export const TitleWrapper = styled.div`
       font-size: ${theme.font.sizes.huge};
       position: relative;
       margin-left: 0;
-      width: 5rem;
+      width: 4rem;
+      ${media.lessThan('medium')`
+        width: 0;
+      `}
     }
   `}
 `
@@ -61,10 +65,11 @@ export const Title = styled.h1`
     font-size: ${theme.font.sizes.xxlarge};
     font-weight: ${theme.font.bold};
     margin-left: 0;
-    text-transform: uppercase;
-    ${media.lessThan('large')`
-      margin-left: 0;
-      font-size: ${theme.font.sizes.xlarge};
+    ${media.lessThan('medium')`
+      width: auto;
+      padding-right: 2rem;
+      margin-left: 4rem;
+      font-size: ${theme.font.sizes.medium};
     `}
   `}
 `
@@ -82,7 +87,6 @@ export const SectionTitle = styled.h2`
       width: 90%;
       line-height: 3rem;
       font-size: ${theme.font.sizes.huge};
-      margin-top: 0;
     `}
   `}
 `
@@ -97,6 +101,7 @@ export const Description = styled.h2`
     margin-left: 0;
     ${media.lessThan('large')`
       margin-left: 0;
+      width: 95%;
     `}
   `}
 `

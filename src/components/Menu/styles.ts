@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components'
 import media from 'styled-media-query'
 
 type WrapperProps = {
-  isNotSpecificRoutes: boolean
+  isnotspecificroutes: boolean
 }
 
 export const Wrapper = styled.menu`
@@ -16,7 +16,6 @@ export const Wrapper = styled.menu`
 
     ${media.lessThan('medium')`
       margin-left: 0;
-      padding: 2rem;
     `}
   `}
 `
@@ -65,9 +64,9 @@ export const MenuGroup = styled.div`
 `
 
 export const MenuLink = styled.p<WrapperProps>`
-  ${({ theme, isNotSpecificRoutes }) => css`
+  ${({ theme, isnotspecificroutes }) => css`
     color: ${theme.colors.primary};
-    color: ${isNotSpecificRoutes ? theme.colors.white : theme.colors.primary};
+    color: ${isnotspecificroutes ? theme.colors.white : theme.colors.primary};
     font-size: ${theme.font.sizes.large};
     margin: 0 ${theme.spacings.medium} 0;
     text-decoration: none;
@@ -84,7 +83,7 @@ export const MenuLink = styled.p<WrapperProps>`
     `}
     &:after {
       content: '';
-      background: ${isNotSpecificRoutes
+      background: ${isnotspecificroutes
         ? theme.colors.white
         : theme.colors.primary};
       display: block;
@@ -106,19 +105,20 @@ export const MenuLink = styled.p<WrapperProps>`
 `
 
 export const MenuSubLink = styled.p<WrapperProps>`
-  ${({ theme, isNotSpecificRoutes }) => css`
+  ${({ theme, isnotspecificroutes }) => css`
     font-size: ${theme.font.sizes.large};
     margin: 0 ${theme.spacings.xsmall} 0;
     text-decoration: none;
     font-weight: ${theme.font.normal};
     text-transform: uppercase;
+    color: ${theme.colors.primary};
     ${media.lessThan('large')`
       margin-left: 0;
       font-size: ${theme.font.sizes.large};
     `}
     &:after {
       content: '';
-      background: ${isNotSpecificRoutes
+      background: ${isnotspecificroutes
         ? theme.colors.white
         : theme.colors.primary};
       display: block;
@@ -128,6 +128,9 @@ export const MenuSubLink = styled.p<WrapperProps>`
       width: 0;
       height: 2px;
       transition: all 0.3s ease-in-out;
+      ${media.lessThan('medium')`
+       background: ${theme.colors.primary};
+      `}
     }
     &:hover {
       background-position: 0;
@@ -148,6 +151,7 @@ export const MenuNav = styled.div`
 
 type MenuFullProps = {
   isOpen: boolean
+  isnotspecificroutes: boolean
 }
 
 type MenuHeaderFullProps = {
@@ -175,7 +179,7 @@ export const DropDownList = styled.ul`
     font-size: ${theme.font.sizes.xsmall};
     font-weight: ${theme.font.light};
     &:first-child {
-      margin-top: 0rem;
+      margin-top: 2rem;
     }
   `}
 `
@@ -184,13 +188,14 @@ export const IconHeader = styled.div`
   position: absolute;
   width: 2.5rem;
   opacity: 0.8;
-  margin-left: 20rem;
-  margin-top: -3.5rem;
+  margin-left: 11rem;
+  margin-top: -2.6rem;
 `
 
 export const DropDownHeader = styled.h2<MenuHeaderFullProps>`
   ${({ theme, ToggleOpen }) => css`
     font-size: ${theme.font.sizes.xlarge};
+    color: ${theme.colors.primary};
     text-transform: uppercase;
     margin-top: 4rem;
     margin-bottom: 2rem;
@@ -201,7 +206,7 @@ export const DropDownHeader = styled.h2<MenuHeaderFullProps>`
     }
     ${media.lessThan('large')`
       margin-top: 0;
-      margin-bottom: 2rem;
+      margin-bottom: 1rem;
       margin-left: 0;
     `}
   `}
@@ -220,8 +225,8 @@ export const IconWrapper = styled.div`
   `}
 `
 
-export const IconMenu = styled.div<MenuFullProps>`
-  ${({ theme, isOpen }) => css`
+export const IconMenu = styled.div<MenuFullProps, WrapperProps>`
+  ${({ theme, isOpen, isnotspecificroutes }) => css`
     width: 35px;
     height: 15px;
     position: relative;
@@ -271,19 +276,18 @@ export const IconMenu = styled.div<MenuFullProps>`
       transform: ${isOpen ? 'rotate(-45deg)' : 'left center'};
     }
     ${media.lessThan('large')`
+      position: ${isOpen ? 'fixed' : 'absolute'};
       width: 25px;
       height: 10px;
       span {
         height: 2px;
-
-      background: ${theme.colors.primary};
-
+        background: ${isnotspecificroutes ? theme.colors.white : theme.colors.primary};
       }
       span:first-child {
-      top: ${isOpen ? '5px' : '4px'};
+      top: ${isOpen ? '30px' : '25px'};
     }
       span:nth-child(2) {
-        top: ${isOpen ? '5px' : '10px'};
+        top: ${isOpen ? '30px' : '33px'};
       }
     `}
   `}
@@ -295,7 +299,6 @@ export const MenuFull = styled.nav<MenuFullProps>`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background: ${theme.colors.mainBg};
     position: fixed;
     z-index: ${theme.layers.menu};
     top: 0;
@@ -307,19 +310,34 @@ export const MenuFull = styled.nav<MenuFullProps>`
     transition: ease-in-out 0.3s;
     pointer-events: ${isOpen ? 'all' : 'none'};
     ${MenuNav} {
-      display: grid;
-      position: absolute;
+      position: relative;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      grid-template-columns: repeat(2, 2fr);
+      .content {
+        max-height: 0;
+        overflow: hidden;
+        transition: all 0.5s cubic-bezier(0, 1, 0, 1);
+      }
+
+      .content.show {
+        height: auto;
+        max-height: 99rem;
+        transition: all 0.5s cubic-bezier(0.5, 0, 1, 0);
+      }
       ${media.lessThan('medium')`
-      display: flex;
-      flex-direction: column;
-        top: 15rem;
-        left: 2rem;
-        width: 90%;
+         padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        top: 0;
+        left: 0;
+        width: 100%;
         transform: translate(0, 0);
+        background: rgba(255, 255, 255, 0.37);
+        border: ${isOpen ? '1px solid rgba(255, 255, 255, 0.8)' : 'none'};
+        border-radius: 16px;
+        backdrop-filter: blur(11.8px);
+        -webkit-backdrop-filter: blur(11.8px);
       `}
     }
     a {
@@ -335,8 +353,11 @@ export const MenuFull = styled.nav<MenuFullProps>`
       `}
     }
     ${media.lessThan('medium')`
-      width: 100%;
-      height: ${isOpen ? '100%' : '0%'};
+      margin-top: 2rem;
+      margin-right: 2rem;
+      width: 91%;
+      transition: all 0.5s ease;
+      max-height: ${isOpen ? '80%' : '0%'};
     `}
   `}
 `
@@ -401,10 +422,10 @@ export const StyledLi = styled.div`
 `
 
 export const DropDownLi = styled(StyledLi)<WrapperProps>`
-  ${({ theme, isNotSpecificRoutes }) => css`
+  ${({ theme, isnotspecificroutes }) => css`
     display: inline-block;
     ${MenuSubLink} {
-      color: ${isNotSpecificRoutes ? theme.colors.white : theme.colors.primary};
+      color: ${isnotspecificroutes ? theme.colors.white : theme.colors.primary};
     }
     &:hover {
       cursor: pointer;
@@ -425,12 +446,25 @@ export const DropDownLi = styled(StyledLi)<WrapperProps>`
 `
 
 export const DropDownContent = styled.div<WrapperProps>`
-  ${({ theme, isNotSpecificRoutes }) => css`
+  ${({ theme, isnotspecificroutes }) => css`
     display: none;
     position: absolute;
     margin-left: 1.5rem;
-    background: ${isNotSpecificRoutes ? 'transparent' : theme.colors.mainBg};
+    background: ${isnotspecificroutes ? 'transparent' : theme.colors.mainBg};
     min-width: 160px;
     z-index: 999;
+  `}
+`
+
+export const SocialMenuWrapper = styled.div`
+  ${({ theme }) => css`
+    width: 90%;
+    position: relative;
+    margin-left: 0;
+    margin-top: 5rem;
+    hr {
+      background-color: ${theme.colors.primary};
+      color: ${theme.colors.primary};
+    }
   `}
 `

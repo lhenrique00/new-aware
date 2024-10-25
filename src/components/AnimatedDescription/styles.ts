@@ -135,8 +135,10 @@ export const Description = styled(animated.h2)`
     ${media.lessThan('medium')`
       width: 90%;
       line-height: 3rem;
-      font-size: ${theme.font.sizes.huge};
+      font-size: ${theme.font.sizes.xxlarge};
       margin-top: 0;
+      margin-bottom: 5rem;
+
     `}
   `}
 `

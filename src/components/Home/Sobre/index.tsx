@@ -1,18 +1,12 @@
 import Base from '@/templates/Base'
-import {
-  useSpring,
-  useChain,
-  useSpringRef,
-  useInView,
-  animated
-} from '@react-spring/web'
+import { useInView, animated } from '@react-spring/web'
 import * as S from './styles'
-import { useState } from 'react'
 import { Container } from '@/components/Container'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight } from '@styled-icons/fluentui-system-regular/ArrowRight'
 import Counter from '@/components/Counter'
+import MediaMatch from '@/components/MediaMatch'
 
 const HomeSobre = () => {
   // Animate useinview
@@ -76,16 +70,14 @@ const HomeSobre = () => {
     <Base>
       <Container>
         <animated.div ref={ref} style={springs}>
-          <S.Title>Sobre </S.Title>
+          <S.Title>Sobre</S.Title>
 
           <S.ColumnWrapper>
             <S.Column>
-              {/* Animated Title */}
-
-              {/* Animated Subtitle */}
               <S.Description>
-                Fundada em 2021 por Luiz Henrique Cardoso, a Aware Soluções é
-                uma agência de publicidade localizada em Porto União - SC.
+                <b>Fundada em 2021</b> por Luiz Henrique Cardoso, a{' '}
+                <b>Aware Soluções</b> é uma <b> agência de publicidade</b>{' '}
+                localizada em <b>Porto União - SC.</b>
                 <br />
                 <br />
                 Com mais de três anos de atuação no mercado nos destacamos pela
@@ -114,8 +106,7 @@ const HomeSobre = () => {
           <Image
             src="/images/recepcao.jpg"
             alt="Recepção Aware"
-            objectFit="cover"
-            layout="fill"
+            fill
             quality={100}
             priority={true}
           />
@@ -145,14 +136,14 @@ const HomeSobre = () => {
             </S.AutorityNumber>
             <S.AutorityDescription>Clientes satisfeitos</S.AutorityDescription>
           </S.AutorityItem>
-          <S.AutorityItem>
+          <MediaMatch lessThan="small">
             <Link href="/sobre">
               <S.ContactButton>
                 <p>Ver mais</p>
                 <ArrowRight />
               </S.ContactButton>
             </Link>
-          </S.AutorityItem>
+          </MediaMatch>
         </S.AutorityWrapper>
       </Container>
     </Base>

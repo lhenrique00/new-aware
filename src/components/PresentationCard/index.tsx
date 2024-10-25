@@ -64,7 +64,7 @@ const PresentationCard = ({ items }: PresentationCardProps) => {
         breakpoint: 1600,
         settings: {
           arrows: true,
-          slidesToShow: 1.7,
+          slidesToShow: 3.2,
           draggable: true
         }
       },
@@ -72,7 +72,7 @@ const PresentationCard = ({ items }: PresentationCardProps) => {
         breakpoint: 1440,
         settings: {
           arrows: true,
-          slidesToShow: 1.5,
+          slidesToShow: 3.2,
           draggable: true
         }
       },
@@ -105,11 +105,6 @@ const PresentationCard = ({ items }: PresentationCardProps) => {
     animation.start({ opacity: 1 })
   }
 
-  const animationVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1 }
-  }
-
   return (
     <S.SectionServicos>
       <S.ProccessContent>
@@ -132,10 +127,15 @@ const PresentationCard = ({ items }: PresentationCardProps) => {
                     }, 500)
                   }}
                   onTap={sequence}
+                  style={{
+                    backgroundColor:
+                      selectedButton === index ? 'white' : '#262626'
+                  }}
                 >
                   <S.Text
                     style={{
-                      fontWeight: selectedButton === index ? 'bold' : 'normal'
+                      fontWeight: selectedButton === index ? 'bold' : 'normal',
+                      color: selectedButton === index ? '#262626' : 'white'
                     }}
                   >
                     {item.title}
@@ -149,6 +149,7 @@ const PresentationCard = ({ items }: PresentationCardProps) => {
           <MediaMatch greaterThan="medium">
             {!!selectedItems && (
               <>
+                <S.Phrase2>{selectedDescription}</S.Phrase2>
                 <S.SliderWrapper
                   animate={animation}
                   transition={{ duration: 0.5, ease: 'easeInOut' }}

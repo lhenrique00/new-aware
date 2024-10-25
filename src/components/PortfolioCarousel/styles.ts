@@ -108,6 +108,7 @@ export const Wrapper = styled.div`
       `}
       ${media.lessThan('large')`
         margin-left: 0;
+        height: 50rem;
         width: 100%;
       `}
     }
@@ -130,6 +131,10 @@ export const Wrapper = styled.div`
       ${media.lessThan('huge')`
         margin: 0 1rem 0 1rem;
       `}
+      ${media.lessThan('medium')`
+        margin: 0;
+        height: auto;
+      `}
     }
 
     .slick-list {
@@ -140,6 +145,7 @@ export const Wrapper = styled.div`
       margin-left: 0;
       width: 100%;
       height: auto;
+      margin-top: 0;
       .slick-prev,
       .slick-next {
         width: 2rem;
@@ -150,30 +156,30 @@ export const Wrapper = styled.div`
 `
 
 export const Item = styled.div`
-  ${({ theme }) => css`
-    position: relative;
-    display: inline-flex !important;
-    flex-wrap: nowrap;
-    width: 100%;
+  position: relative;
+  display: inline-flex !important;
+  flex-wrap: nowrap;
+  width: 100%;
+  height: auto;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  padding: 0 2rem 0 0rem;
+  border-radius: 2px;
+  ${media.lessThan('huge')`
+    padding: 0;
     height: auto;
-    margin-top: 3rem;
-    margin-bottom: 3rem;
-    padding: 0 2rem 0 0rem;
-    border-radius: 2px;
-    ${media.lessThan('huge')`
-      padding: 0;
-      height: auto;
-      display: flex;
-      width: 40rem;
-      flex-direction: column;
-      padding-bottom: 2rem;
-    `}
+    display: flex;
+    width: 40rem;
+    flex-direction: column;
+    margin-bottom: 0;
+    padding-bottom: 0;
   `}
 `
 
 export const ProfileInfoWrapper = styled.div`
   position: absolute;
   bottom: 4rem;
+  width: 100%;
 `
 
 export const ProfileWrapper = styled.div`
@@ -197,7 +203,7 @@ export const ProfileWrapper = styled.div`
     `}
     ${media.lessThan('medium')`
       padding: 4rem 2rem 5rem 3rem;
-      height: 25rem;
+      height: 45rem;
       width: 100%;
     `}
   `}
@@ -223,37 +229,36 @@ export const Mask = styled.div`
 `
 
 export const CattegoryWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  flex-direction: row;
   position: relative;
   display: none;
   width: auto;
 `
 
 export const SocialWrapper = styled.div`
-  ${({ theme }) => css`
-    display: none;
-    position: relative;
-    margin-top: 2rem;
-  `}
+  display: none;
+  position: relative;
+  margin-top: 2rem;
 `
 
 export const SocialItem = styled.div`
-  ${({ theme }) => css`
-    margin-right: 1rem;
-    position: relative;
+  margin-right: 1rem;
+  position: relative;
+  transition: all 0.5s ease;
+  border-radius: 2px;
+  svg {
+    width: 2.3rem;
+    fill: rgba(255, 255, 255, 0.8);
     transition: all 0.5s ease;
-    border-radius: 2px;
+  }
+  &:hover {
     svg {
-      width: 2.3rem;
-      fill: rgba(255, 255, 255, 0.8);
+      fill: rgba(255, 255, 255, 1);
       transition: all 0.5s ease;
     }
-    &:hover {
-      svg {
-        fill: rgba(255, 255, 255, 1);
-        transition: all 0.5s ease;
-      }
-    }
-  `}
+  }
 `
 
 export const CattegoryTitle = styled.h2`
@@ -267,5 +272,6 @@ export const CattegoryTitle = styled.h2`
     font-size: ${theme.font.sizes.xsmall};
     padding: 0.5rem 1rem;
     border-radius: 2px;
+    margin-right: 1rem;
   `}
 `

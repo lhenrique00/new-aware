@@ -6,9 +6,10 @@ export default [
     slug: 'design',
     description:
       'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.',
-    services: [
+    service: [
       {
         id: '0',
+
         title: 'identidade visual',
         subtitle: '',
         description:
@@ -16,6 +17,7 @@ export default [
       },
       {
         id: '1',
+
         title: 'Cartões de Visita',
         subtitle: '',
         description:
@@ -23,6 +25,7 @@ export default [
       },
       {
         id: '2',
+
         title: 'Papelaria',
         subtitle: '',
         description:
@@ -30,6 +33,7 @@ export default [
       },
       {
         id: '3',
+
         title: 'Brochuras e Flyers',
         subtitle: '',
         description:
@@ -42,9 +46,10 @@ export default [
     title: 'Social Media',
     slug: 'social-media',
 
-    services: [
+    service: [
       {
         id: '0',
+
         title: 'Lorem Ipsum is',
         subtitle: '',
         description:
@@ -52,6 +57,7 @@ export default [
       },
       {
         id: '1',
+
         title: 'Lorem Ipsum is',
         subtitle: '',
         description:
@@ -59,6 +65,7 @@ export default [
       },
       {
         id: '2',
+
         title: 'Lorem Ipsum is',
         subtitle:
           'Elaboração de defesas, realização de audiências, interposição de recursos, acompanhamento e gestão de processos',
@@ -67,6 +74,7 @@ export default [
       },
       {
         id: '3',
+
         title: 'Lorem Ipsum is',
         subtitle: 'atuação preventiva para evitar reclamatórias trabalhistas.',
         description:
@@ -74,6 +82,7 @@ export default [
       },
       {
         id: '4',
+
         title: 'Lorem Ipsum is',
         subtitle: '',
         description:
@@ -87,9 +96,10 @@ export default [
     id: '2',
     title: 'Tráfego-pago',
     slug: 'trafego-pago',
-    services: [
+    service: [
       {
         id: '0',
+
         title: 'Lorem Ipsum is',
         subtitle: '',
         description:
@@ -97,6 +107,7 @@ export default [
       },
       {
         id: '1',
+
         title: 'Lorem Ipsum is',
         subtitle: '',
         description:
@@ -104,6 +115,7 @@ export default [
       },
       {
         id: '2',
+
         title: 'Lorem Ipsum is',
         subtitle: '',
         description:
@@ -111,6 +123,7 @@ export default [
       },
       {
         id: '3',
+
         title: 'Lorem Ipsum is',
         subtitle: '',
         description:
@@ -118,6 +131,7 @@ export default [
       },
       {
         id: '4',
+
         title: 'Lorem Ipsum is',
         subtitle: '',
         description:
@@ -131,9 +145,10 @@ export default [
     id: '3',
     title: 'Websites',
     slug: 'websites',
-    services: [
+    service: [
       {
         id: '0',
+
         title: 'Lorem Ipsum is',
         subtitle: '',
         description:
@@ -141,6 +156,7 @@ export default [
       },
       {
         id: '1',
+
         title: 'Lorem Ipsum is',
         subtitle: '',
         description:
@@ -148,6 +164,7 @@ export default [
       },
       {
         id: '2',
+
         title: 'Lorem Ipsum is',
         subtitle: '',
         description:
@@ -155,6 +172,7 @@ export default [
       },
       {
         id: '3',
+
         title: 'Lorem Ipsum is',
         subtitle: '(cível, criminal e administrativa)',
         description:
@@ -162,6 +180,7 @@ export default [
       },
       {
         id: '4',
+
         title: 'Lorem Ipsum is',
         subtitle: '',
         description:
@@ -175,9 +194,10 @@ export default [
     id: '4',
     title: 'Informática',
     slug: 'informatica',
-    services: [
+    service: [
       {
         id: '0',
+
         title: 'Lorem Ipsum is',
         subtitle: '',
         description:
@@ -185,6 +205,7 @@ export default [
       },
       {
         id: '1',
+
         title: 'Lorem Ipsum is',
         subtitle: '',
         description:
@@ -192,6 +213,7 @@ export default [
       },
       {
         id: '2',
+
         title: 'Lorem Ipsum is',
         subtitle: '',
         description:
@@ -199,6 +221,7 @@ export default [
       },
       {
         id: '3',
+
         title: 'Lorem Ipsum is',
         subtitle: '(cível, criminal e administrativa)',
         description:
@@ -206,6 +229,7 @@ export default [
       },
       {
         id: '4',
+
         title: 'Lorem Ipsum is',
         subtitle: '',
         description:

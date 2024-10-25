@@ -1,23 +1,29 @@
 import styled, { css } from 'styled-components'
-import media from 'styled-media-query'
 import { animated } from '@react-spring/web'
+import media from 'styled-media-query'
 
 export const Wrapper = styled.div`
-  margin-bottom: 20rem;
+  margin-bottom: 10rem;
 `
 
 export const Body = styled.div`
   ${({ theme }) => css`
     background-color: ${theme.colors.mainBg};
-    height: 200vh;
+    height: 250vh;
     width: 100%;
     overflow: hidden;
+    ${media.lessThan('medium')`
+      height: 200vh;
+    `}
   `}
 `
 
 export const FullPage = styled.div`
   width: 100vw;
-  height: 200vh;
+  height: 250vh;
+  ${media.lessThan('medium')`
+    height: 200vh;
+  `}
 `
 
 export const AnimatedLayers = styled.div`
@@ -55,8 +61,8 @@ export const Title = styled(animated.h1)`
     position: absolute;
     font-size: 5rem;
     padding-left: 8vw;
-    left: 0%;
-    top: 25%;
+    left: 0;
+    top: 55%;
     & > span {
       display: block;
       overflow: hidden;
@@ -65,6 +71,11 @@ export const Title = styled(animated.h1)`
         display: block;
       }
     }
+    ${media.lessThan('medium')`
+      top: 35%;
+      width: 100%;
+      font-size: ${theme.font.sizes.xxlarge};
+    `}
   `}
 `
 
@@ -76,7 +87,7 @@ export const Title2 = styled(animated.h1)`
     font-size: 5rem;
     padding-left: 8vw;
     left: 20%;
-    top: 55%;
+    top: 75%;
     & > span {
       display: block;
       overflow: hidden;
@@ -85,5 +96,11 @@ export const Title2 = styled(animated.h1)`
         display: block;
       }
     }
+    ${media.lessThan('medium')`
+      top: 47%;
+      left: 0;
+      width: 100%;
+      font-size: ${theme.font.sizes.xxlarge};
+    `}
   `}
 `

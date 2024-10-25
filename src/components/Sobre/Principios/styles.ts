@@ -4,6 +4,9 @@ import { animated } from '@react-spring/web'
 
 export const Wrapper = styled.div`
   margin-bottom: 20rem;
+  ${media.lessThan('medium')`
+    margin-bottom: 0;
+  `}
 `
 
 export const ColumnWrapper = styled.div`
@@ -14,6 +17,13 @@ export const ColumnWrapper = styled.div`
   hr {
     margin-right: 10rem;
   }
+  ${media.lessThan('medium')`
+    display: flex;
+    flex-direction: column;
+    hr {
+      margin-right: 0;
+    }
+  `}
 `
 
 export const Column = styled.div`
@@ -57,15 +67,12 @@ export const Description = styled(animated.h2)`
     line-height: auto;
     transition: all 0.5s ease;
     margin-bottom: 5rem;
-    ${media.lessThan('huge')`
-      font-weight: ${theme.font.normal};
-      font-size: ${theme.font.sizes.medium};
-    `}
+
     ${media.lessThan('medium')`
       width: 90%;
-      line-height: 3rem;
-      font-size: ${theme.font.sizes.huge};
-      margin-top: 0;
+      line-height: ${theme.font.sizes.large};
+      font-size: ${theme.font.sizes.medium};
+      margin-top: 1rem;
     `}
   `}
 `
@@ -83,9 +90,10 @@ export const ValuesTitle = styled(animated.h1)`
       line-height: 6rem;
     `}
     ${media.lessThan('medium')`
+      margin-bottom: 0;
       width: 90%;
       line-height: 3rem;
-      font-size: ${theme.font.sizes.huge};
+      font-size: ${theme.font.sizes.xxlarge};
       margin-top: 0;
     `}
   `}
@@ -99,15 +107,10 @@ export const ValuesDescription = styled(animated.h2)`
     font-size: ${theme.font.sizes.large};
     line-height: auto;
     transition: all 0.5s ease;
-    ${media.lessThan('huge')`
-      font-weight: ${theme.font.normal};
-      font-size: ${theme.font.sizes.medium};
-    `}
     ${media.lessThan('medium')`
       width: 90%;
-      line-height: 3rem;
-      font-size: ${theme.font.sizes.huge};
-      margin-top: 0;
+      line-height: ${theme.font.sizes.large};
+      font-size: ${theme.font.sizes.medium};
     `}
   `}
 `

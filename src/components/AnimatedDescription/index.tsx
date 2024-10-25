@@ -18,7 +18,6 @@ export type AnimatedDescriptionProps = {
 }
 
 const AnimatedDescription = ({
-  id,
   first_message,
   second_message,
   third_message

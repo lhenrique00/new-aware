@@ -9,7 +9,7 @@ import { ArrowLeft } from '@styled-icons/fluentui-system-regular/ArrowLeft'
 import { ArrowRight } from '@styled-icons/fluentui-system-regular/ArrowRight'
 
 const HomeDeoimentos = () => {
-  const [open, setOpen] = useState(true)
+  const [open] = useState(true)
 
   // Create references for each animation
   const titleRef = useSpringRef()
@@ -19,14 +19,6 @@ const HomeDeoimentos = () => {
   // Animation for the Title
   const titleSpring = useSpring({
     ref: titleRef,
-    from: { opacity: 0 },
-    to: { opacity: open ? 1 : 0 },
-    config: { duration: 1000 }
-  })
-
-  // Animation for the Subtitle
-  const subtitleSpring = useSpring({
-    ref: subtitleRef,
     from: { opacity: 0 },
     to: { opacity: open ? 1 : 0 },
     config: { duration: 1000 }
@@ -71,7 +63,7 @@ const HomeDeoimentos = () => {
         <Container>
           <S.ColumnWrapper>
             <S.Column>
-              <S.Title style={titleSpring}>DEPOIMENTOS </S.Title>
+              <S.Title style={titleSpring}>DEPOIMENTOS</S.Title>
               <S.Description style={descriptionSpring}>
                 Veja o que nossos clientes falam sobre a gente.
               </S.Description>

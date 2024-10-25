@@ -21,6 +21,7 @@ export const BigNumber = styled.h3`
       line-height: 3rem;
       font-size: ${theme.font.sizes.huge};
       margin-top: 0;
+      margin-bottom: 0;
     `}
   `}
 `
@@ -217,9 +218,12 @@ export const ParallaxWrapper = styled.div`
   }
   span {
     display: inline-block !important;
-
     width: 100%;
   }
+  ${media.lessThan('medium')`
+    overflow: hidden;
+
+  `}
 `
 
 export const imageWrapper = styled.div`
@@ -248,6 +252,12 @@ export const IntroInfo = styled.div`
     font-weight: 200;
     margin-bottom: 2rem;
   }
+  ${media.lessThan('medium')`
+    h3 {
+      left: 0;
+    width: 90%;
+  }
+  `}
 `
 
 export const IntroInfoWrapper = styled.div`
@@ -256,6 +266,14 @@ export const IntroInfoWrapper = styled.div`
   left: 10rem;
   display: flex;
   flex-direction: column;
+
+  ${media.lessThan('medium')`
+    position: absolute;
+    bottom: 5rem;
+    left: 2rem;
+    display: flex;
+    flex-direction: column;
+  `}
 `
 
 // _____________________________________________________
@@ -272,6 +290,9 @@ export const ServicosSection = styled(animated.div)`
   ${({ theme }) => css`
     padding: 10rem;
     background-color: ${theme.colors.primary};
+    ${media.lessThan('medium')`
+      padding: 5rem 0rem 5rem 2rem;
+    `}
   `}
 `
 
@@ -281,13 +302,9 @@ export const ServicesTitle = styled.h1`
     text-transform: uppercase;
     width: 50%;
     font-size: 9rem;
-    line-height: 9rem;
+    line-height: 8rem;
     margin-bottom: 2rem;
     transition: all 0.5s ease;
-    ${media.lessThan('huge')`
-      font-size: 7rem;
-      line-height: 6rem;
-    `}
     ${media.lessThan('medium')`
       width: 90%;
       line-height: 3rem;
@@ -320,6 +337,7 @@ export const PersonalizedTitle = styled.h1`
     `}
     ${media.lessThan('medium')`
       width: 90%;
+      padding-left: 2rem;
       line-height: 3rem;
       font-size: ${theme.font.sizes.huge};
       margin-top: 0;
@@ -336,6 +354,18 @@ export const PersonalizedDescription = styled.h2`
     transition: all 0.5s ease;
     padding-left: 10rem;
     margin-bottom: 5rem;
+    ${media.lessThan('medium')`
+      line-height: ${theme.font.sizes.large};
+      font-size: ${theme.font.sizes.medium};
+      padding-left: 2rem;
+      width: 95%;
+    `}
+  `}
+`
+
+export const CTAPersonalizedWrapper = styled.div`
+  ${media.lessThan('medium')`
+    padding-left: 2rem;
   `}
 `
 
@@ -349,6 +379,12 @@ export const CTAPersonalizedDescription = styled.h2`
     padding-left: 10rem;
     margin-top: 5rem;
     margin-bottom: 2rem;
+    ${media.lessThan('medium')`
+      line-height: ${theme.font.sizes.large};
+      font-size: ${theme.font.sizes.medium};
+      padding-left: 0;
+      width: 95%;
+    `}
   `}
 `
 
@@ -367,7 +403,8 @@ export const ListItem = styled.div`
   grid-template-columns: 25% 75%;
   padding: 2rem 10rem 2rem 10rem;
   ${media.lessThan('huge')`
-    grid-template-columns: 30% 70%;
+    grid-template-columns: 20% 80%;
+    padding: 2rem;
   `}
 `
 
@@ -385,7 +422,8 @@ export const ListItemMaiorQue = styled.div`
   ${media.lessThan('huge')`
     width: 100%;
     display: grid;
-    grid-template-columns: 30% 70%;
+    grid-template-columns: 20% 80%;
+    padding: 2rem;
   `}
 `
 
@@ -402,8 +440,8 @@ export const InfoDescriptionMaiorQue = styled(animated.h2)`
     `}
     ${media.lessThan('medium')`
       width: 100%;
-      line-height: 3rem;
-      font-size: ${theme.font.sizes.huge};
+      line-height: ${theme.font.sizes.large};
+      font-size: ${theme.font.sizes.medium};
       margin-top: 0;
     `}
   `}
@@ -419,8 +457,8 @@ export const InfoTitleMaiorQue = styled(animated.h1)`
     transition: all 0.5s ease;
     ${media.lessThan('medium')`
       width: 90%;
-      line-height: 3rem;
-      font-size: ${theme.font.sizes.huge};
+      line-height: ${theme.font.sizes.xxlarge};
+      font-size: ${theme.font.sizes.xxlarge};
       margin-top: 0;
     `}
   `}
@@ -464,8 +502,8 @@ export const InfoTitle = styled(animated.h1)`
     transition: all 0.5s ease;
     ${media.lessThan('medium')`
       width: 90%;
-      line-height: 3rem;
-      font-size: ${theme.font.sizes.huge};
+      line-height: ${theme.font.sizes.xxlarge};
+      font-size: ${theme.font.sizes.xxlarge};
       margin-top: 0;
     `}
   `}
@@ -484,8 +522,8 @@ export const InfoDescription = styled(animated.h2)`
     `}
     ${media.lessThan('medium')`
       width: 90%;
-      line-height: 3rem;
-      font-size: ${theme.font.sizes.huge};
+      line-height: ${theme.font.sizes.large};
+      font-size: ${theme.font.sizes.medium};
       margin-top: 0;
     `}
   `}
@@ -599,9 +637,15 @@ export const LocationDescription = styled.h2`
   ${({ theme }) => css`
     color: ${theme.colors.primary};
     width: 50rem;
-    font-size: ${theme.font.sizes.medium};
+    font-size: ${theme.font.sizes.large};
+    line-height: auto;
     font-weight: ${theme.font.normal};
     transition: all 0.5s ease;
+    ${media.lessThan('medium')`
+      width: 95%;
+      line-height: ${theme.font.sizes.large};
+      font-size: ${theme.font.sizes.medium};
+    `}
   `}
 `
 
@@ -617,6 +661,11 @@ export const LocationInfoDescription = styled.h2`
     font-size: ${theme.font.sizes.medium};
     font-weight: ${theme.font.extraBold};
     transition: all 0.5s ease;
+    ${media.lessThan('medium')`
+      width: 95%;
+      line-height: ${theme.font.sizes.large};
+      font-size: ${theme.font.sizes.medium};
+    `}
   `}
 `
 
@@ -652,7 +701,7 @@ export const imageLocationWrapper = styled(animated.div)`
   ${media.lessThan('medium')`
     width: auto;
     height: 28rem;
-    width: 100%;
+    width: 95%;
   `}
 `
 
@@ -661,6 +710,9 @@ export const imageLocationWrapper = styled(animated.div)`
 
 export const PlatformSection = styled(animated.div)`
   margin-bottom: 20rem;
+  ${media.lessThan('medium')`
+    margin-bottom: 0;
+  `}
 `
 
 export const PlatformTitle = styled.h1`
@@ -736,71 +788,53 @@ export const PlatformItem = styled.div`
   width: 25rem;
   margin-right: 5rem;
   margin-bottom: 5rem;
-  img {
-    width: 7rem;
-    margin-bottom: 1rem;
-  }
+`
+
+export const platformImageWrapper = styled.div`
+  width: 2rem;
+  margin-bottom: 1rem;
 `
 
 // _____________________________________________________
 // PORTFOLIO
 
-export const PortfolioSection = styled(animated.div)`
-  .example-container {
-    width: 100vw;
-    height: 100vh;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+export const PortfolioSection = styled(animated.div)``
 
-  .next,
-  .prev {
-    top: calc(50% - 20px);
-    position: absolute;
-    background: white;
-    border-radius: 30px;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    user-select: none;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 18px;
-    z-index: 2;
-  }
+export const PortfolioTitle = styled.h1`
+  ${({ theme }) => css`
+    color: ${theme.colors.primary};
+    text-transform: uppercase;
+    width: 100%;
+    font-size: 9rem;
+    line-height: 8rem;
+    margin-bottom: 2rem;
+    transition: all 0.5s ease;
+    ${media.lessThan('huge')`
+      font-size: 7rem;
+      line-height: 6rem;
+    `}
+    ${media.lessThan('medium')`
+      width: 100%;
+      line-height: 3rem;
+      font-size: ${theme.font.sizes.huge};
+      margin-top: 0;
+    `}
+  `}
+`
 
-  .next {
-    right: 10px;
-  }
-
-  .prev {
-    left: 10px;
-    transform: scale(-1);
-  }
-
-  img {
-    position: absolute;
-    max-width: 100vw;
-  }
-
-  .refresh {
-    padding: 10px;
-    position: absolute;
-    background: rgba(0, 0, 0, 0.4);
-    border-radius: 10px;
-    width: 20px;
-    height: 20px;
-    top: 10px;
-    right: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-  }
+export const PortfolioDescription = styled.h2`
+  ${({ theme }) => css`
+    color: ${theme.colors.primary};
+    width: 50rem;
+    font-size: ${theme.font.sizes.large};
+    line-height: auto;
+    transition: all 0.5s ease;
+    ${media.lessThan('medium')`
+      width: 100%;
+      line-height: ${theme.font.sizes.large};
+      font-size: ${theme.font.sizes.medium};
+    `}
+  `}
 `
 
 // _____________________________________________________
@@ -818,6 +852,10 @@ export const imageOurProcessWrapper = styled.div`
   object-fit: cover;
   top: 0;
   right: 0;
+  z-index: -1;
+  ${media.lessThan('medium')`
+    width: 45%;
+  `}
 `
 
 export const OurProcessInfo = styled.div`
@@ -838,7 +876,7 @@ export const OurProcessTitle = styled.h1`
       line-height: 6rem;
     `}
     ${media.lessThan('medium')`
-      width: 90%;
+      width: 50%;
       line-height: 3rem;
       font-size: ${theme.font.sizes.huge};
       margin-top: 0;
@@ -850,9 +888,13 @@ export const OurProcessDescription = styled.h2`
   ${({ theme }) => css`
     color: ${theme.colors.primary};
     width: 50%;
-    font-size: ${theme.font.sizes.medium};
-    font-weight: ${theme.font.normal};
+    font-size: ${theme.font.sizes.large};
+    line-height: auto;
     transition: all 0.5s ease;
+    ${media.lessThan('medium')`
+      line-height: ${theme.font.sizes.large};
+      font-size: ${theme.font.sizes.medium};
+    `}
   `}
 `
 
@@ -867,16 +909,22 @@ export const InfoOurProcessWrapper = styled.div`
     flex-direction: row;
     flex-wrap: wrap;
     background-color: ${theme.colors.primary};
+    ${media.lessThan('medium')`
+      margin-top: 5rem;
+      margin-right: 2rem;
+      padding: 2rem;
+    `}
   `}
 `
 
 export const InfoOurProcessItem = styled.div`
-  ${({ theme }) => css`
-    width: calc(85% / 4);
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 4rem;
-    margin-right: 4rem;
+  width: calc(85% / 4);
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 4rem;
+  margin-right: 4rem;
+  ${media.lessThan('medium')`
+    width: 100%;
   `}
 `
 
@@ -888,6 +936,10 @@ export const OurProcessInfoTitle = styled.h1`
     font-size: ${theme.font.sizes.large};
     margin-bottom: 2rem;
     transition: all 0.5s ease;
+    ${media.lessThan('medium')`
+      margin-bottom: 1rem;
+      margin-top: 1rem;
+    `}
   `}
 `
 
@@ -932,20 +984,34 @@ export const WebsiteServicesDescription = styled.h2`
   ${({ theme }) => css`
     color: ${theme.colors.primary};
     width: 50%;
-    font-size: ${theme.font.sizes.medium};
+    font-size: ${theme.font.sizes.large};
+    line-height: auto;
     font-weight: ${theme.font.normal};
     transition: all 0.5s ease;
     margin-bottom: 4rem;
+    ${media.lessThan('medium')`
+      width: 95%;
+      margin-bottom: 0;
+      line-height: ${theme.font.sizes.large};
+      font-size: ${theme.font.sizes.medium};
+    `}
   `}
 `
 
 export const WebsiteServicesWrapper = styled.div`
   display: flex;
   width: 100%;
-
   &:nth-of-type(even) {
-    flex-direction: row-reverse; // Inverte as colunas para itens pares
+    flex-direction: row-reverse;
   }
+  ${media.lessThan('medium')`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    &:nth-of-type(even) {
+      flex-direction: column;
+    }
+  `}
 `
 
 export const WebsiteServicesItemWrapper = styled.div`
@@ -955,6 +1021,9 @@ export const WebsiteServicesItemWrapper = styled.div`
 export const WebsiteServicesColumn = styled.div`
   display: flex;
   width: 50%;
+  ${media.lessThan('medium')`
+    width: 100%;
+  `}
 `
 
 export const WebsiteServicesImage = styled.div`
@@ -962,6 +1031,9 @@ export const WebsiteServicesImage = styled.div`
   width: 100%;
   height: 70rem;
   object-fit: contain;
+  ${media.lessThan('medium')`
+    height: 35rem;
+  `}
 `
 
 // _____________________________________________________
@@ -993,10 +1065,16 @@ export const informaticaServicesDescription = styled(motion.h2)`
   ${({ theme }) => css`
     color: ${theme.colors.primary};
     width: 50%;
-    font-size: ${theme.font.sizes.medium};
+    font-size: ${theme.font.sizes.large};
+    line-height: auto;
     font-weight: ${theme.font.normal};
     transition: all 0.5s ease;
     margin-bottom: 4rem;
+    ${media.lessThan('huge')`
+      width: 90%;
+      line-height: ${theme.font.sizes.large};
+      font-size: ${theme.font.sizes.medium};
+    `}
   `}
 `
 
@@ -1006,11 +1084,14 @@ export const Container = styled.div`
   padding: 4rem;
 `
 
-export const InformaticaServiceSection = styled.div`
+export const InformaticaServiceSection = styled(animated.div)`
   display: flex;
   position: relative;
   min-height: 100vh;
   width: 100%;
+  ${media.lessThan('medium')`
+    flex-direction: column;
+  `}
 `
 
 export const StickyContainer = styled.div`
@@ -1027,6 +1108,9 @@ export const StickyCard = styled(motion.div)`
   top: 5rem; /* Fixa no topo enquanto o usuário faz o scroll */
   z-index: 10; /* Garante a sobreposição dos cards */
   margin-bottom: 4rem;
+  ${media.lessThan('medium')`
+    top: 20rem;
+  `}
 `
 
 export const CardsContainer = styled.div`
@@ -1043,23 +1127,40 @@ export const ServiceCard = styled(motion.div)`
   background-color: white;
   height: auto;
   min-height: 40rem;
+  ${media.lessThan('medium')`
+    width: 95%;
+    min-height: 50rem;
+  `}
 `
 
 export const ServiceCardWrapper = styled.div`
   display: grid;
   grid-template-columns: 20% 100%;
   width: 100%;
+  ${media.lessThan('medium')`
+    display: flex;
+    flex-direction: column;
+  `}
 `
 
 export const ServiceCardColumn = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 80%;
+  ${media.lessThan('huge')`
+    width: 80%;
+  `}
+  ${media.lessThan('small')`
+    width: 100%;
+  `}
 `
 
 export const CardInfoWrapper = styled.div`
   padding-left: 5rem;
   width: 100%;
+  ${media.lessThan('medium')`
+    padding-left: 0;
+  `}
 `
 
 export const CardInfoItemsWrapper = styled.div`

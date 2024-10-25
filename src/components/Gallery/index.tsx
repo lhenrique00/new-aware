@@ -79,7 +79,7 @@ const Gallery = ({ items }: GalleryProps) => {
     <S.Wrapper>
       <Slider ref={slider} settings={settings}>
         {items.map((i) => (
-          <S.Item>
+          <S.Item key={i.url}>
             <S.ProfileWrapper>
               <S.imageWrapper>
                 <Image

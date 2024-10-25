@@ -5,11 +5,6 @@ import Image from 'next/image'
 export const getStrapiMedia = (url: string) => {
   return `${process.env.NEXT_PUBLIC_IMAGE_HOST}${url}`
 }
-// export type ContactButtonProps = {
-//   id: string
-//   title: string
-//   src: string
-// }
 
 export type ImageProps = {
   url: string
@@ -44,16 +39,18 @@ CardProps) => (
           <S.CardTitle>{title}</S.CardTitle>
           <S.CardDescription>{description}</S.CardDescription>
         </S.InfoWrapper>
-        <S.imageWrapper>
-          <Image
-            src={getStrapiMedia(bg_img.url)}
-            alt="Recepção Aware"
-            objectFit="cover"
-            layout="fill"
-            quality={100}
-            priority={true}
-          />
-        </S.imageWrapper>
+        {!!bg_img && (
+          <S.imageWrapper>
+            <Image
+              src={getStrapiMedia(bg_img.url)}
+              alt="Recepção Aware"
+              objectFit="cover"
+              layout="fill"
+              quality={100}
+              priority={true}
+            />
+          </S.imageWrapper>
+        )}
         <S.Mask />
         {/* <S.ButtonsWrapper>
           <Link href={contactButton.src} target="_blank" key={contactButton.id}>

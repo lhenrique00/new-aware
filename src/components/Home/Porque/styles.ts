@@ -14,6 +14,10 @@ export const WrapperPorque = styled.div`
   margin: auto;
   height: 100vh;
   text-align: left;
+  ${media.lessThan('medium')`
+    margin-top: 0;
+    height: 30vh;
+  `}
 `
 
 export const List = styled.div`
@@ -30,7 +34,8 @@ export const ListItem = styled.div`
   display: grid;
   grid-template-columns: 25% 75%;
   padding: 2rem 10rem 2rem 10rem;
-  ${media.lessThan('huge')`
+  ${media.lessThan('medium')`
+    padding: 2rem 0rem 2rem 2rem;
     grid-template-columns: 30% 70%;
   `}
 `
@@ -50,14 +55,10 @@ export const ListNumber = styled(animated.h2)`
     font-size: 15rem;
     line-height: auto;
     transition: all 0.5s ease;
-    ${media.lessThan('huge')`
-      width: 33rem;
-    `}
+
     ${media.lessThan('medium')`
       width: 90%;
-      line-height: 3rem;
-      font-size: ${theme.font.sizes.huge};
-      margin-top: 0;
+      font-size: 7rem;
     `}
   `}
 `
@@ -74,7 +75,7 @@ export const InfoTitle = styled(animated.h1)`
     ${media.lessThan('medium')`
       width: 90%;
       line-height: 3rem;
-      font-size: ${theme.font.sizes.huge};
+      font-size: ${theme.font.sizes.xxlarge};
       margin-top: 0;
     `}
   `}
@@ -94,8 +95,8 @@ export const InfoDescription = styled(animated.h2)`
     `}
     ${media.lessThan('medium')`
       width: 90%;
-      line-height: 3rem;
-      font-size: ${theme.font.sizes.huge};
+      line-height: ${theme.font.sizes.large};
+      font-size: ${theme.font.sizes.medium};
       margin-top: 0;
     `}
   `}

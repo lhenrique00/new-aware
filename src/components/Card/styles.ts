@@ -33,9 +33,12 @@ export const Card = styled.div`
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   padding: 3rem;
   height: 45rem;
+  ${media.lessThan('huge')`
+    height: 40rem;
+  `}
   ${media.lessThan('large')`
     padding: 2rem;
-    height: 45rem;
+    height: 35rem;
   `}
 `
 
@@ -45,11 +48,11 @@ export const CardTitle = styled.h1`
     text-transform: uppercase;
     font-size: ${theme.font.sizes.huge};
     line-height: auto;
-    margin-bottom: 0;
+    margin-bottom: 2rem;
     transition: all 0.5s ease;
     ${media.lessThan('huge')`
-      font-size: 7rem;
-      line-height: 6rem;
+      line-height: 3rem;
+      font-size: ${theme.font.sizes.huge};
     `}
     ${media.lessThan('medium')`
       width: 90%;

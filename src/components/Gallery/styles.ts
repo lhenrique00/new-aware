@@ -112,6 +112,7 @@ export const Wrapper = styled.div`
       ${media.lessThan('large')`
         margin-left: 0;
         width: 100%;
+        height: 55rem;
       `}
     }
 
@@ -131,7 +132,7 @@ export const Wrapper = styled.div`
       margin: 0;
       cursor: pointer;
       ${media.lessThan('huge')`
-        margin: 0 1rem 0 1rem;
+        margin: 0;
       `}
     }
 
@@ -198,7 +199,7 @@ export const ProfileWrapper = styled.div`
     `}
     ${media.lessThan('medium')`
       padding: 4rem 2rem 5rem 3rem;
-      height: 25rem;
+      height: 50rem;
       width: 100%;
     `}
   `}
@@ -230,31 +231,27 @@ export const CattegoryWrapper = styled.div`
 `
 
 export const SocialWrapper = styled.div`
-  ${({ theme }) => css`
-    display: none;
-    position: relative;
-    margin-top: 2rem;
-  `}
+  display: none;
+  position: relative;
+  margin-top: 2rem;
 `
 
 export const SocialItem = styled.div`
-  ${({ theme }) => css`
-    margin-right: 1rem;
-    position: relative;
+  margin-right: 1rem;
+  position: relative;
+  transition: all 0.5s ease;
+  border-radius: 2px;
+  svg {
+    width: 2.3rem;
+    fill: rgba(255, 255, 255, 0.8);
     transition: all 0.5s ease;
-    border-radius: 2px;
+  }
+  &:hover {
     svg {
-      width: 2.3rem;
-      fill: rgba(255, 255, 255, 0.8);
+      fill: rgba(255, 255, 255, 1);
       transition: all 0.5s ease;
     }
-    &:hover {
-      svg {
-        fill: rgba(255, 255, 255, 1);
-        transition: all 0.5s ease;
-      }
-    }
-  `}
+  }
 `
 
 export const CattegoryTitle = styled.h2`

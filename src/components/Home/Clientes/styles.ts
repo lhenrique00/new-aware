@@ -11,7 +11,7 @@ export const Title = styled(animated.h1)`
     width: 60%;
     color: ${theme.colors.primary};
     text-transform: uppercase;
-    font-weight: ${theme.font.bold};
+    font-weight: ${theme.font.extraBold};
     font-size: 9rem;
     line-height: 8rem;
     margin-bottom: 5rem;
@@ -59,8 +59,8 @@ export const Description = styled(animated.h2)`
     transition: all 0.5s ease;
     ${media.lessThan('medium')`
       width: 90%;
-      line-height: 3rem;
-      font-size: ${theme.font.sizes.huge};
+      line-height: ${theme.font.sizes.large};
+      font-size: ${theme.font.sizes.medium};
       margin-top: 0;
     `}
   `}
@@ -69,6 +69,7 @@ export const Description = styled(animated.h2)`
 export const ParallaxWrapper = styled.div`
   width: 100%;
   margin-top: 5rem;
+  overflow: hidden;
   img {
     margin-top: 2rem;
     margin-bottom: 2rem;
@@ -77,6 +78,12 @@ export const ParallaxWrapper = styled.div`
   span {
     display: inline-flex !important;
   }
+  ${media.lessThan('medium')`
+    overflow: hidden;
+    span {
+      width: 100vh !important;
+    }
+  `}
 `
 
 export const imageWrapper = styled.div`

@@ -21,7 +21,7 @@ const SobreIntro = () => {
       config: { duration: 800 }
     }),
     {
-      rootMargin: '-20% 0%'
+      rootMargin: '0% 0%'
     }
   )
 
@@ -59,7 +59,7 @@ const SobreIntro = () => {
       delay: 0
     }),
     {
-      rootMargin: '-20% 0%'
+      rootMargin: '0% 0%'
     }
   )
 

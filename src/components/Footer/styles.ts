@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components'
 import media from 'styled-media-query'
-import { SocialProps } from '@/components/Social'
 
 export const Wrapper = styled.footer`
   ${({ theme }) => css`
@@ -29,11 +28,11 @@ export const ContactTitle = styled.h1`
     ${media.lessThan('huge')`
       font-size: 8rem;
       line-height: 8rem;
-    `}s
+    `}
     ${media.lessThan('medium')`
       width: 90%;
-      line-height: 3rem;
-      font-size: ${theme.font.sizes.huge};
+      line-height: 7rem;
+      font-size: 7rem;
       margin-top: 0;
     `}
   `}
@@ -106,8 +105,8 @@ export const Description = styled.h2`
     `}
     ${media.lessThan('medium')`
       width: 90%;
-      line-height: 3rem;
-      font-size: ${theme.font.sizes.huge};
+      line-height: ${theme.font.sizes.large};
+      font-size: ${theme.font.sizes.medium};
       margin-top: 0;
     `}
   `}
@@ -130,7 +129,7 @@ export const Content = styled.div`
     flex-wrap: wrap;
     flex-direction: column;
     padding-top: 5rem;
-    padding-bottom: 5rem;
+    padding-bottom: 0;
   `}
 `
 
@@ -152,6 +151,7 @@ export const Column = styled.div`
     }
     ${media.lessThan('medium')`
       margin-left: 3rem;
+      margin-bottom: 4rem;
       h4 {
         margin-top: 2rem;
         margin-bottom: 4rem;
@@ -232,7 +232,7 @@ export const Copyright = styled.div`
       font-size: ${theme.font.sizes.xsmall};
       position: relative;
       margin-bottom: 3rem;
-      text-align: center;
+      text-align: left;
     `}
   `}
 `
@@ -245,10 +245,11 @@ export const CopyrightDescription = styled.h2`
     text-transform: uppercase;
     padding-top: 2rem;
     ${media.lessThan('medium')`
+      width: 80%;
       font-size: ${theme.font.sizes.xsmall};
       padding-left: 0;
       position: relative;
-      margin: auto;
+      margin-left: 3rem;
       margin-bottom: 1rem;
     `}
   `}
@@ -266,12 +267,13 @@ export const CopyDescription = styled.h2`
     padding-left: 10rem;
     padding-top: 2rem;
     ${media.lessThan('medium')`
+      width: 80%;
       font-size: ${theme.font.sizes.xsmall};
       padding-left: 0;
       right: 0;
       padding-top: 1rem;
       position: relative;
-      margin: auto;
+      margin-left: 3rem;
       margin-bottom: 3rem;
     `}
   `}

@@ -4,6 +4,10 @@ import { animated } from '@react-spring/web'
 
 export const Wrapper = styled.div`
   margin-bottom: 20rem;
+  ${media.lessThan('medium')`
+    margin-top: 5rem;
+    margin-bottom: 0;
+  `}
 `
 
 export const ColumnWrapper = styled.div`
@@ -12,6 +16,11 @@ export const ColumnWrapper = styled.div`
   width: 100%;
   height: auto;
   position: relative;
+
+  ${media.lessThan('medium')`
+    display: flex;
+    flex-direction: column;
+  `}
 `
 
 export const Column = styled.div`
@@ -71,14 +80,12 @@ export const Title = styled(animated.h1)`
   ${({ theme }) => css`
     color: ${theme.colors.primary};
     text-transform: uppercase;
-    font-size: 11rem;
-    line-height: 10rem;
+    font-size: 9rem;
+    line-height: 8rem;
+
     margin-bottom: 2rem;
     transition: all 0.5s ease;
-    ${media.lessThan('huge')`
-      font-size: 7rem;
-      line-height: 6rem;
-    `}
+
     ${media.lessThan('medium')`
       width: 90%;
       line-height: 3rem;
@@ -114,17 +121,12 @@ export const Description = styled(animated.h2)`
     font-weight: ${theme.font.normal};
     font-size: ${theme.font.sizes.xxlarge};
     text-align: justify;
-
     line-height: auto;
     transition: all 0.5s ease;
-    ${media.lessThan('huge')`
-      font-weight: ${theme.font.normal};
-      font-size: ${theme.font.sizes.medium};
-    `}
     ${media.lessThan('medium')`
-      width: 90%;
-      line-height: 3rem;
-      font-size: ${theme.font.sizes.huge};
+      width: 95%;
+      line-height: ${theme.font.sizes.large};
+      font-size: ${theme.font.sizes.medium};
       margin-top: 0;
     `}
   `}
@@ -141,7 +143,7 @@ export const imageWrapper = styled(animated.div)`
   ${media.lessThan('medium')`
     width: auto;
     height: 28rem;
-    width: 100%;
+    width: 95%;
   `}
 `
 
@@ -153,6 +155,12 @@ export const AutorityWrapper = styled(animated.div)`
     margin-top: 0;
     border-left: 1px solid ${theme.colors.primary};
     padding-left: 4rem;
+    ${media.lessThan('medium')`
+      margin-top: 2rem;
+      margin-bottom: 0;
+      padding-left: 0;
+      border-left: none;
+    `}
   `}
 `
 export const AutorityItem = styled.div`
@@ -161,6 +169,9 @@ export const AutorityItem = styled.div`
   width: 50%;
   height: auto;
   flex-direction: column;
+  ${media.lessThan('medium')`
+      margin-bottom: 2rem;
+    `}
 `
 
 export const AutorityNumber = styled(animated.div)`
@@ -199,9 +210,9 @@ export const AutorityDescription = styled(animated.h2)`
       line-height: auto;
     `}
     ${media.lessThan('medium')`
-      width: 100%;
-      line-height: 3rem;
-      font-size: ${theme.font.sizes.huge};
+      width: 50%;
+      line-height: ${theme.font.sizes.large};
+      font-size: ${theme.font.sizes.medium};
       margin-top: 0;
     `}
   `}

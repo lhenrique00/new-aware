@@ -6,14 +6,12 @@ import { useEffect, useRef, useState } from 'react'
 const PAGE_COUNT = 5
 
 const NossaProposta = () => {
-  const containerRef = useRef<HTMLDivElement>(null!)
   const [index, setIndex] = useState(0)
   const [text, setText] = useState<React.ReactNode[]>([])
   const [secondIndex, setSecondIndex] = useState(0)
   const [secondText, setSecondText] = useState<React.ReactNode[]>([])
   const cref = useRef<HTMLDivElement>(null!)
   const [scrollProgress, setScrollProgress] = useState(0)
-  console.log(scrollProgress)
   // Função para calcular o progresso do scroll
   // Function to calculate scroll progress
   const handleScroll = () => {
@@ -44,6 +42,7 @@ const NossaProposta = () => {
   })
 
   // Break down the message into sections with bold markers
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const message1 = [
     {
       text: 'NOSSA PROPOSTA NÃO É APENAS AJUDAR COM A MANUTENÇÃO E MELHOR FUNCIONAMENTO DA PARTE TECNOLÓGICA DA SUA EMPRESA',
@@ -51,6 +50,7 @@ const NossaProposta = () => {
     }
   ]
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const message2 = [
     {
       text: 'MAS SIM FAZER COM QUE ELA CRESÇA, SEJA CADA VEZ MAIS BEM-SUCEDIDA E SE TORNE REFERÊNCIA NO MERCADO EM QUE ATUA . ',
@@ -60,7 +60,7 @@ const NossaProposta = () => {
 
   const [ref, inView] = useInView({
     once: false,
-    rootMargin: '0% 0%'
+    rootMargin: '90% 0%'
   })
 
   // Function to render letters one by one and manage bolded sections
@@ -103,7 +103,7 @@ const NossaProposta = () => {
       }, 20)
       return () => clearTimeout(timeout)
     }
-  }, [index, inView])
+  }, [index, inView, message1])
 
   // Typing effect for the second message after the first is finished
   useEffect(() => {
@@ -117,7 +117,7 @@ const NossaProposta = () => {
       }, 20)
       return () => clearTimeout(timeout)
     }
-  }, [secondIndex, inView, index])
+  }, [secondIndex, inView, index, message1, message2])
 
   // EFEITO DO CIRCULO
 
@@ -130,15 +130,15 @@ const NossaProposta = () => {
               style={{
                 clipPath: springProps.scrollProgress.to((val) => {
                   // Dot grows until 30% progress, stays fully open, then shrinks at 70% progress
-                  if (val < 0.2) {
+                  if (val < 0.3) {
                     // Growing phase (up to 30% scroll progress)
                     return `circle(${val * 200}% at 50% 50%)` // Grow from 0% to 100% based on scroll
-                  } else if (val >= 0.2 && val <= 0.5) {
+                  } else if (val >= 0.1 && val <= 0.5) {
                     // Stay open phase (between 30% and 70% scroll progress)
                     return `circle(100% at 50% 50%)` // Stay fully open
                   } else {
                     // Shrinking phase (after 70% scroll progress)
-                    return `circle(${(1 - val) * 200}% at 50% 30%)` // Shrink back from 100% to 0%
+                    return `circle(${(1 - val) * 250}% at 80% 30%)` // Shrink back from 100% to 0%
                   }
                 })
               }}

@@ -116,7 +116,7 @@ export const SectionServicos = styled(motion.section)`
       position: relative;
       display: flex;
       align-items: center;
-      padding-left: 2rem;
+      padding-left: 0;
       padding-right: 2rem;
     }
     .slick-track:before,
@@ -165,8 +165,8 @@ export const SectionServicos = styled(motion.section)`
       position: relative;
       display: block;
       padding: 0;
-      padding-top: 5rem;
-      margin-left: 2rem;
+      padding-top: 0;
+      margin-left: 0;
     `}
   `}
 `
@@ -212,29 +212,23 @@ export const SliderWrapper = styled(motion.div)`
 export const Phrase2 = styled.h4`
   ${({ theme }) => css`
     letter-spacing: 0.08rem;
-    color: ${theme.colors.primary};
-    width: 80%;
-    padding-bottom: 5rem;
+    color: ${theme.colors.white};
+    width: 40rem;
+    padding-bottom: 0;
     text-shadow: none;
     margin-top: 3rem;
     font-weight: ${theme.font.normal};
-    line-height: ${theme.font.sizes.xxlarge};
-    font-size: ${theme.font.sizes.xlarge};
+    line-height: ${theme.font.sizes.xlarge};
+    font-size: ${theme.font.sizes.large};
     text-align: justify;
-    hyphens: auto;
-    ${media.lessThan('huge')`
-      width: 90%;
-      font-size: ${theme.font.sizes.medium};
-      line-height: ${theme.font.sizes.xlarge};
-    `}
-    ${media.lessThan('large')`
+
+    ${media.lessThan('medium')`
       margin-top: 0;
-      margin-bottom: 2rem;
+      margin-bottom: 0;
       padding-bottom: 0;
       width: 90%;
-      min-height: 10rem;
+      line-height: ${theme.font.sizes.large};
       font-size: ${theme.font.sizes.medium};
-      line-height: ${theme.font.sizes.xlarge};
     `}
   `}
 `
@@ -243,21 +237,12 @@ export const ProccessContent = styled.div`
   display: grid;
   grid-template-columns: 20% 100%;
   margin-top: 0;
+  ${media.lessThan('huge')`
+    grid-template-columns: 25% 100%;
+  `}
   ${media.lessThan('large')`
     display: block;
     margin-top: 0;
-  `}
-`
-
-export const Text = styled.h3`
-  ${({ theme }) => css`
-    color: ${theme.colors.white};
-    font-size: ${theme.font.sizes.xsmall};
-    line-height: ${theme.font.sizes.small};
-    ${media.greaterThan('medium')`
-      font-size: ${theme.font.sizes.xlarge};
-      line-height: ${theme.font.sizes.large};
-    `}
   `}
 `
 
@@ -268,32 +253,48 @@ export const ButtonsWrapper = styled.div`
   height: 100%;
   ${media.lessThan('medium')`
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
     margin-bottom: 1rem;
   `}
 `
 
-export const Button = styled(motion.div)`
+export const Text = styled.h3`
   ${({ theme }) => css`
-    width: auto;
-    height: 4rem;
-    flex-wrap: nowrap;
-    margin: 1rem;
-    margin-left: 0;
-    margin-right: 4rem;
-    border-radius: 2px;
-    cursor: pointer;
-    ${media.lessThan('medium')`
-      padding: 0.5rem 1rem 0.5rem 1rem;
-      margin: 0;
-      margin-right: 1rem;
-      margin-bottom: 0.5rem;
-      width: auto;
-      height: 3rem;
-      ${Text} {
-        margin: auto;
-      }
+    color: ${theme.colors.white};
+    font-size: ${theme.font.sizes.xlarge};
+    line-height: ${theme.font.sizes.small};
+    margin: auto;
+    ${media.lessThan('huge')`
+      font-size: ${theme.font.sizes.small};
     `}
+    ${media.lessThan('medium')`
+      font-size: ${theme.font.sizes.xsmall};
+    `}
+  `}
+`
+
+export const Button = styled(motion.div)`
+  width: auto;
+  height: 4rem;
+  flex-wrap: nowrap;
+  margin: 1rem;
+  margin-left: 0;
+  margin-right: 4rem;
+  border-radius: 2px;
+  cursor: pointer;
+  padding: 1rem 1rem 0.5rem 1rem;
+  ${media.lessThan('medium')`
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    margin: 0;
+    border: 1px solid white;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    height: 3rem;
+    ${Text} {
+      margin: auto;
+      width: auto;
+    }
   `}
 `
 

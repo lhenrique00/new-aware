@@ -19,10 +19,12 @@ export const DuvidasSection = styled.section`
   }
 
   ${media.lessThan('huge')`
-    width: 50%;
+    width: 100%;
   `}
   ${media.lessThan('large')`
     width: 90%;
+    margin-top: 4rem;
+    margin-bottom: 5rem;
   `}
 `
 
@@ -61,6 +63,7 @@ export const Title = styled.h1`
     color: ${theme.colors.primary};
     font-size: ${theme.font.sizes.xxlarge};
     font-weight: ${theme.font.bold};
+    margin: auto;
     margin-left: 0;
     text-transform: uppercase;
     ${media.lessThan('large')`
@@ -98,6 +101,7 @@ export const Description = styled.h2`
     margin-left: 0;
     ${media.lessThan('large')`
       margin-left: 0;
+      width: 95%;
     `}
   `}
 `

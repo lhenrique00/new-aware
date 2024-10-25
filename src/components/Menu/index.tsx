@@ -2,13 +2,14 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
-import { KeyboardArrowRight } from '@styled-icons/material-outlined/KeyboardArrowRight'
 
 import MediaMatch from '@/components/MediaMatch'
 import * as S from './styles'
 import { ServicePageQuery } from '@/graphql/generated/graphql'
 import { QUERY_SERVICE_PAGE } from '@/graphql/queries/pages'
 import { useQuery } from '@apollo/client'
+import { KeyboardArrowRight } from '@styled-icons/material-outlined/KeyboardArrowRight'
+import Social from '@/components/Social'
 
 export type MenuProps = {
   color?: 'white' | 'primary'
@@ -16,14 +17,15 @@ export type MenuProps = {
 
 const Menu = ({ color = 'primary' }: MenuProps) => {
   const [isOpen, setIsOpen] = useState(false)
-  const [ToggleOpen, setToggleOpen] = useState(false)
   const router = useRouter() // Hook para acessar a rota atual
+  const [ToggleOpen, setToggleOpen] = useState(false)
+
   const toggling = () => setToggleOpen(!ToggleOpen)
 
   const { data } = useQuery<ServicePageQuery>(QUERY_SERVICE_PAGE)
 
   // Verifica se a rota atual é diferente de "/"
-  const isNotSpecificRoutes = !['/', '/sobre', '/contato'].includes(
+  const isnotspecificroutes = !['/', '/sobre', '/contato'].includes(
     router.pathname
   )
 
@@ -33,16 +35,24 @@ const Menu = ({ color = 'primary' }: MenuProps) => {
         {color == 'white' ? (
           <>
             <S.IconWrapper>
-              <S.IconMenu isOpen={isOpen} onClick={() => setIsOpen(!isOpen)}>
-                <span style={{ background: 'white' }}></span>
-                <span style={{ background: 'white' }}></span>
+              <S.IconMenu
+                isnotspecificroutes={isnotspecificroutes}
+                isOpen={isOpen}
+                onClick={() => setIsOpen(!isOpen)}
+              >
+                <span></span>
+                <span></span>
               </S.IconMenu>
             </S.IconWrapper>
           </>
         ) : (
           <>
             <S.IconWrapper>
-              <S.IconMenu isOpen={isOpen} onClick={() => setIsOpen(!isOpen)}>
+              <S.IconMenu
+                isnotspecificroutes={isnotspecificroutes}
+                isOpen={isOpen}
+                onClick={() => setIsOpen(!isOpen)}
+              >
                 <span></span>
                 <span></span>
               </S.IconMenu>
@@ -54,7 +64,7 @@ const Menu = ({ color = 'primary' }: MenuProps) => {
         <Link href="/">
           <Image
             src={
-              isNotSpecificRoutes ? '/images/logo.png' : '/images/logobew.png'
+              isnotspecificroutes ? '/images/logo.png' : '/images/logobew.png'
             } // Condicional para trocar a imagem
             alt="Logo Aware Soluções"
             width={130}
@@ -66,75 +76,118 @@ const Menu = ({ color = 'primary' }: MenuProps) => {
       <MediaMatch greaterThan="large">
         <S.MenuGroup>
           <Link href="/" passHref>
-            <S.MenuLink isNotSpecificRoutes={isNotSpecificRoutes} color={color}>
+            <S.MenuLink isnotspecificroutes={isnotspecificroutes} color={color}>
               Home
             </S.MenuLink>
           </Link>
           <Link href="/sobre" passHref>
-            <S.MenuLink isNotSpecificRoutes={isNotSpecificRoutes} color={color}>
+            <S.MenuLink isnotspecificroutes={isnotspecificroutes} color={color}>
               Sobre
             </S.MenuLink>
           </Link>
-          <S.DropDownLi isNotSpecificRoutes={isNotSpecificRoutes}>
-            <S.MenuLink isNotSpecificRoutes={isNotSpecificRoutes} color={color}>
+          <S.DropDownLi isnotspecificroutes={isnotspecificroutes}>
+            <S.MenuLink isnotspecificroutes={isnotspecificroutes} color={color}>
               Serviços
             </S.MenuLink>
-            <S.DropDownContent isNotSpecificRoutes={isNotSpecificRoutes}>
+            <S.DropDownContent isnotspecificroutes={isnotspecificroutes}>
               {data?.servicePages.map((i) => (
-                <>
-                  <Link href={`/${i?.slug}`} passHref>
-                    <S.MenuSubLink
-                      isNotSpecificRoutes={isNotSpecificRoutes}
-                      color={color}
-                    >
-                      {i?.pageTitle}
-                    </S.MenuSubLink>
-                  </Link>
-                </>
+                <Link href={`/${i?.slug}`} key={i?.slug} passHref>
+                  <S.MenuSubLink
+                    isnotspecificroutes={isnotspecificroutes}
+                    color={color}
+                  >
+                    {i?.pageTitle}
+                  </S.MenuSubLink>
+                </Link>
               ))}
             </S.DropDownContent>
           </S.DropDownLi>
           <Link href="/contato" passHref>
-            <S.MenuLink isNotSpecificRoutes={isNotSpecificRoutes} color={color}>
+            <S.MenuLink isnotspecificroutes={isnotspecificroutes} color={color}>
               Contato
             </S.MenuLink>
           </Link>
         </S.MenuGroup>
       </MediaMatch>
 
-      <S.MenuFull aria-hidden={!isOpen} isOpen={isOpen}>
-        <S.LogoWrapper>
-          <Link href="/" passHref>
-            <Image
-              src="/images/logobew.png"
-              alt="Logo Lenz e Ribeiro Advocacia"
-              onClick={() => setIsOpen(false)}
-              width={130}
-              height={80}
-            />
-          </Link>
-        </S.LogoWrapper>
+      <S.MenuFull
+        isnotspecificroutes={isnotspecificroutes}
+        aria-hidden={!isOpen}
+        isOpen={isOpen}
+      >
         <S.MenuNav>
           <S.Column>
-            <Link href="/home" passHref>
-              <S.Title onClick={() => setIsOpen(false)}>Home</S.Title>
+            <Link href="/" passHref>
+              <S.Title
+                onClick={() => {
+                  setIsOpen(false)
+                  setToggleOpen(false)
+                }}
+              >
+                Home
+              </S.Title>
             </Link>
           </S.Column>
           <S.Column>
             <Link href="/sobre" passHref>
-              <S.Title onClick={() => setIsOpen(false)}>Sobre</S.Title>
+              <S.Title
+                onClick={() => {
+                  setIsOpen(false)
+                  setToggleOpen(false)
+                }}
+              >
+                Sobre
+              </S.Title>
             </Link>
           </S.Column>
           <S.Column>
-            <Link href="/servicos" passHref>
-              <S.Title onClick={() => setIsOpen(false)}>Serviços</S.Title>
-            </Link>
+            <S.DropDownHeader
+              onClick={toggling}
+              aria-hidden={!ToggleOpen}
+              ToggleOpen={ToggleOpen}
+            >
+              Serviços
+              <S.IconHeader>
+                <KeyboardArrowRight />
+              </S.IconHeader>
+            </S.DropDownHeader>
+
+            <S.DropDownListContainer
+              className={ToggleOpen == true ? 'content show' : 'content'}
+            >
+              <S.DropDownList>
+                {data?.servicePages.map((i) => (
+                  <Link href={`/${i?.slug}`} key={i?.slug} passHref>
+                    <S.MenuSubLink
+                      isnotspecificroutes={isnotspecificroutes}
+                      onClick={() => {
+                        setIsOpen(false)
+                        setToggleOpen(false)
+                      }}
+                    >
+                      {i?.pageTitle}
+                    </S.MenuSubLink>
+                  </Link>
+                ))}
+              </S.DropDownList>
+            </S.DropDownListContainer>
           </S.Column>
           <S.Column>
             <Link href="/contato" passHref>
-              <S.Title onClick={() => setIsOpen(false)}>Contato</S.Title>
+              <S.Title
+                onClick={() => {
+                  setIsOpen(false)
+                  setToggleOpen(false)
+                }}
+              >
+                Contato
+              </S.Title>
             </Link>
           </S.Column>
+          <S.SocialMenuWrapper>
+            <hr />
+            <Social color="primary" />
+          </S.SocialMenuWrapper>
         </S.MenuNav>
       </S.MenuFull>
     </S.Wrapper>

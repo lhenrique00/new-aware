@@ -10,11 +10,13 @@ const HomePorque = () => {
   const [secondText, setSecondText] = useState<React.ReactNode[]>([])
 
   // Break down the message into sections with bold markers
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const message1 = [
     { text: 'Por que a ', bold: false },
     { text: 'Aware?', bold: false }
   ]
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const message2 = [
     { text: 'Tenha ', bold: false },
     { text: 'uma única empresa ', bold: true },
@@ -66,7 +68,7 @@ const HomePorque = () => {
       }, 100)
       return () => clearTimeout(timeout)
     }
-  }, [index, inView])
+  }, [index, inView, message1])
 
   // Typing effect for the second message after the first is finished
   useEffect(() => {
@@ -80,7 +82,7 @@ const HomePorque = () => {
       }, 30)
       return () => clearTimeout(timeout)
     }
-  }, [secondIndex, inView, index])
+  }, [secondIndex, inView, index, message1, message2])
 
   return (
     <Base>

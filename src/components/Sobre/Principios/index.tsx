@@ -2,10 +2,7 @@ import Base from '@/templates/Base'
 import { useInView, animated } from '@react-spring/web'
 import * as S from './styles'
 import { Container } from '@/components/Container'
-import Image from 'next/image'
-import Link from 'next/link'
-import { ArrowRight } from '@styled-icons/fluentui-system-regular/ArrowRight'
-import Counter from '@/components/Counter'
+import MediaMatch from '@/components/MediaMatch'
 
 const SobrePrincipios = () => {
   // Animate useinview
@@ -64,6 +61,9 @@ const SobrePrincipios = () => {
                   Comprometimento
                 </S.ValuesDescription>
               </S.Column>
+              <MediaMatch lessThan="medium">
+                <hr />
+              </MediaMatch>
             </S.ColumnWrapper>
           </animated.div>
         </S.Wrapper>

@@ -3,19 +3,8 @@ import * as S from './styles'
 import { Container } from '@/components/Container'
 import Link from 'next/link'
 import Image from 'next/image'
-import { useInView, animated } from '@react-spring/web'
-
-import {
-  motion,
-  useScroll,
-  useSpring,
-  useTransform,
-  useMotionValue,
-  useVelocity,
-  useAnimationFrame
-} from 'framer-motion'
+import { useInView } from '@react-spring/web'
 import { useRef } from 'react'
-import { wrap } from '@motionone/utils'
 import { ArrowRight } from '@styled-icons/fluentui-system-regular/ArrowRight'
 import PortfolioCarousel from '@/components/PortfolioCarousel'
 import Accordion from '@/components/Accordion'
@@ -25,60 +14,10 @@ import AnimatedDescription, {
 } from '@/components/AnimatedDescription'
 import AccordionService from '@/components/AccordionService'
 import Gallery from '@/components/Gallery'
-
-interface ParallaxProps {
-  children: string | JSX.Element | JSX.Element[]
-  baseVelocity: number
-}
+import Intro, { ServicePageIntroProps } from '@/components/ServicePage/Intro'
 
 export const getStrapiMedia = (url: string) => {
   return `${process.env.NEXT_PUBLIC_IMAGE_HOST}${url}`
-}
-
-function ParallaxText({ children, baseVelocity = 100 }: ParallaxProps) {
-  const baseX = useMotionValue(0)
-  const { scrollY } = useScroll()
-  const scrollVelocity = useVelocity(scrollY)
-  const smoothVelocity = useSpring(scrollVelocity, {
-    damping: 50,
-    stiffness: 400
-  })
-  const velocityFactor = useTransform(smoothVelocity, [0, 1000], [0, 5], {
-    clamp: false
-  })
-
-  const x = useTransform(baseX, (v) => `${wrap(-20, -100, v)}%`)
-
-  const directionFactor = useRef<number>(1)
-
-  useAnimationFrame((t, delta) => {
-    let moveBy = directionFactor.current * baseVelocity * (delta / 1000)
-
-    if (velocityFactor.get() < 0) {
-      directionFactor.current = -1
-    } else if (velocityFactor.get() > 0) {
-      directionFactor.current = 1
-    }
-
-    moveBy += directionFactor.current * moveBy * velocityFactor.get()
-
-    baseX.set(baseX.get() + moveBy)
-
-    // Faz com que o movimento continue de forma contínua e infinita
-    if (baseX.get() > 100) {
-      baseX.set(-100)
-    } else if (baseX.get() < -100) {
-      baseX.set(100)
-    }
-  })
-
-  return (
-    <div className="parallax">
-      <motion.div className="scroller" style={{ x }}>
-        <span>{children}</span>
-      </motion.div>
-    </div>
-  )
 }
 
 // Tipos dos componentes da zona dinâmica
@@ -214,12 +153,6 @@ export type InformaticaServicesItemProps = {
 
 // ___________________________
 
-export type IntroProps = {
-  title: string
-  description: string
-  cover_image: string
-}
-
 export type ContentProps = {
   __typename: string
   id: string
@@ -258,7 +191,7 @@ export type CattegoryProps = {
 }
 
 export type ServicePagesTemplateProps = {
-  intro: IntroProps
+  intro: ServicePageIntroProps
   contentPage: ContentProps[]
 }
 
@@ -266,22 +199,6 @@ const ServicePagesTemplate = ({
   intro,
   contentPage
 }: ServicePagesTemplateProps) => {
-  const [ref, springs] = useInView(
-    () => ({
-      from: {
-        opacity: 0
-      },
-      to: {
-        opacity: 1
-      },
-      reverse: true,
-      config: { duration: 800 }
-    }),
-    {
-      rootMargin: '-20% 0%'
-    }
-  )
-
   const [servicesRef, servicesSprings] = useInView(
     () => ({
       from: {
@@ -471,81 +388,37 @@ const ServicePagesTemplate = ({
       rootMargin: '-30% 0%'
     }
   )
+
+  const [informaticaServicesRef, informaticaServicesSprings] = useInView(
+    () => ({
+      from: {
+        opacity: 0,
+        y: 0
+      },
+      to: {
+        opacity: 1,
+        y: -10
+      },
+      reverse: true,
+      config: { duration: 800 },
+      delay: 0
+    }),
+    {
+      rootMargin: '-40% 0%'
+    }
+  )
+
   const containerRef = useRef(null)
 
   return (
     <Base>
-      <animated.div ref={ref} style={springs}>
-        <S.IntroSection>
-          <S.imageWrapper>
-            <Image
-              src={getStrapiMedia(intro.cover_image)}
-              alt="Recepção Aware"
-              objectFit="cover"
-              layout="fill"
-              quality={100}
-              priority={true}
-            />
-          </S.imageWrapper>
-          <S.Mask />
-          <S.ParallaxWrapper>
-            <ParallaxText baseVelocity={4}>
-              <h1>
-                <span>●</span>
-                {intro.title}
-              </h1>
-              <h1>
-                <span>●</span>
-                {intro.title}
-              </h1>
-              <h1>
-                <span>●</span>
-                {intro.title}
-              </h1>
-              <h1>
-                <span>●</span>
-                {intro.title}
-              </h1>
-              <h1>
-                <span>●</span>
-                {intro.title}
-              </h1>
-              <h1>
-                <span>●</span>
-                {intro.title}
-              </h1>
-              <h1>
-                <span>●</span>
-                {intro.title}
-              </h1>
-              <h1>
-                <span>●</span>
-                {intro.title}
-              </h1>
-              <h1>
-                <span>●</span>
-                {intro.title}
-              </h1>
-              <h1>
-                <span>●</span>
-                {intro.title}
-              </h1>
-            </ParallaxText>
-          </S.ParallaxWrapper>
-          <S.IntroInfo>
-            <S.IntroInfoWrapper>
-              <h1>{intro.title}</h1>
-              <h3>{intro.description}</h3>
-              <Link href="/contato">
-                <S.ContactButton>
-                  <p>Entrar em contato</p>
-                  <ArrowRight />
-                </S.ContactButton>
-              </Link>
-            </S.IntroInfoWrapper>
-          </S.IntroInfo>
-        </S.IntroSection>
-      </animated.div>
+      <Intro
+        cover_image={intro.cover_image}
+        description={intro.description}
+        title={intro.title}
+        key={intro.title}
+      />
+
       {contentPage.map((component, index) => {
         switch (component.__typename) {
           case 'ComponentServicesServicesContent':
@@ -613,17 +486,18 @@ const ServicePagesTemplate = ({
                     ))}
                   </>
                 )}
-
-                <S.CTAPersonalizedDescription>
-                  {component.cta_text}
-                </S.CTAPersonalizedDescription>
-                <h3>{component.image?.url}</h3>
-                <Link href={`${component.button?.link}`}>
-                  <S.ContactButtonBlack key={component.button?.id}>
-                    <p>{component.button?.title}</p>
-                    <ArrowRight />
-                  </S.ContactButtonBlack>
-                </Link>
+                <S.CTAPersonalizedWrapper>
+                  <S.CTAPersonalizedDescription>
+                    {component.cta_text}
+                  </S.CTAPersonalizedDescription>
+                  <h3>{component.image?.url}</h3>
+                  <Link href={`${component.button?.link}`}>
+                    <S.ContactButtonBlack key={component.button?.id}>
+                      <p>{component.button?.title}</p>
+                      <ArrowRight />
+                    </S.ContactButtonBlack>
+                  </Link>
+                </S.CTAPersonalizedWrapper>
               </S.PersonalizedSection>
             )
           case 'ComponentGeneralGallery':
@@ -699,7 +573,7 @@ const ServicePagesTemplate = ({
                     </S.LocationDescription>
                   </S.HorariosWrapper>
                   {component.cta_button.map((i) => (
-                    <S.LocationButtonWrapper>
+                    <S.LocationButtonWrapper key={i.id}>
                       <Link href={`${i.link}`}>
                         <S.ButtonBlack key={i.id}>
                           <p>{i.title}</p>
@@ -776,7 +650,16 @@ const ServicePagesTemplate = ({
                   <S.PlatformInfoWrapper>
                     {component.platforms_item.map((i) => (
                       <S.PlatformItem key={i.id}>
-                        <img src={getStrapiMedia(i.svg.url)} />
+                        <S.platformImageWrapper>
+                          <Image
+                            alt="svg"
+                            src={getStrapiMedia(i.svg.url)}
+                            width={80}
+                            height={80}
+                            quality={100}
+                            priority={true}
+                          />
+                        </S.platformImageWrapper>
                         <S.PlatformInfoTitle>{i.title}</S.PlatformInfoTitle>
                         <S.PlatformInfoDescription>
                           {i.description}
@@ -796,10 +679,10 @@ const ServicePagesTemplate = ({
                   ref={portfolioRef}
                   style={portfolioSprings}
                 >
-                  <S.OurProcessTitle>{component.title}</S.OurProcessTitle>
-                  <S.OurProcessDescription>
+                  <S.PortfolioTitle>{component.title}</S.PortfolioTitle>
+                  <S.PortfolioDescription>
                     {component.description}
-                  </S.OurProcessDescription>
+                  </S.PortfolioDescription>
                   <PortfolioCarousel items={component.PortfolioItem} />
                 </S.PortfolioSection>
               </Container>
@@ -823,7 +706,10 @@ const ServicePagesTemplate = ({
           case 'ComponentServicesInformaticaServices':
             return (
               <Container>
-                <S.InformaticaServiceSection>
+                <S.InformaticaServiceSection
+                  ref={informaticaServicesRef}
+                  style={informaticaServicesSprings}
+                >
                   <S.StickyContainer>
                     <S.informaticaServicesTitle
                       initial={{ opacity: 0, y: 50 }}

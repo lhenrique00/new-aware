@@ -1,4 +1,4 @@
-import { gql, QueryHookOptions, useQuery } from '@apollo/client'
+import { gql } from '@apollo/client'
 
 export const QUERY_SERVICE_PAGE = gql`
   query servicePage {

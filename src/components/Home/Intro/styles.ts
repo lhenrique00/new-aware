@@ -7,14 +7,18 @@ export const ColumnWrapper = styled.div`
   width: 100%;
   height: auto;
   position: relative;
-  ${media.lessThan('huge')`
-    height: auto;
-    `}
+  ${media.lessThan('small')`
+    display: flex;
+    flex-wrap: wrap;
+  `}
 `
 
 export const SocialWrapper = styled.div`
   position: relative;
-  margin-left: 9.1rem;
+  margin-left: 5rem;
+  ${media.lessThan('small')`
+    margin-left: 1.5rem;
+  `}
 `
 
 export const Column = styled.div`
@@ -24,6 +28,9 @@ export const Column = styled.div`
   flex-wrap: wrap;
   width: 100%;
   height: auto;
+  ${media.lessThan('small')`
+    margin-bottom: 5rem;
+  `}
 `
 
 export const ContactButton = styled.div`
@@ -66,8 +73,13 @@ export const ContactButton = styled.div`
       width: 100%;
     }
     ${media.lessThan('small')`
-      margin-left: 0;
-      font-size: ${theme.font.sizes.small};
+      position: relative;
+      margin-top: 2rem;
+      bottom: 3rem;
+      left: 0;
+      display: inline-flex;
+      text-decoration: none;
+      transition: all 0.5s ease;
     `}
   `}
 `
@@ -89,10 +101,9 @@ export const Title = styled(animated.h1)`
     `}
     ${media.lessThan('small')`
       width: 90%;
-      padding-top: 8rem;
       line-height: 3rem;
       font-size: ${theme.font.sizes.huge};
-      margin-top: 0;
+      margin-top: 4rem;
     `}
   `}
 `
@@ -135,10 +146,10 @@ export const Description = styled(animated.h2)`
       width: 37rem;
     `}
     ${media.lessThan('small')`
-      width: 90%;
-      line-height: 3rem;
-      font-size: ${theme.font.sizes.huge};
-      margin-top: 0;
+      width: 80%;
+      line-height: ${theme.font.sizes.small};
+      font-size: ${theme.font.sizes.small};
+      margin-top: 2rem;
     `}
   `}
 `

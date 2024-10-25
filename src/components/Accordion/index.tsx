@@ -33,9 +33,7 @@ const Accordion = ({ items }: AccordionItemProps) => {
                 {selected === i ? '-' : '+'}
               </span>
               <S.Column>
-                <S.Title onClick={() => toggle(i)}>
-                  {item.number}. {item.title}
-                </S.Title>
+                <S.Title onClick={() => toggle(i)}>{item.title}</S.Title>
               </S.Column>
             </S.TitleWrapper>
             <div className={selected === i ? 'content show' : 'content'}>

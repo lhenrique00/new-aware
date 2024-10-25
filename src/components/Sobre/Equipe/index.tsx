@@ -1,20 +1,44 @@
 import Base from '@/templates/Base'
-import {
-  useSpring,
-  useChain,
-  useSpringRef,
-  useInView,
-  animated
-} from '@react-spring/web'
+import { useInView, animated } from '@react-spring/web'
 import * as S from './styles'
-import { useState } from 'react'
 import { Container } from '@/components/Container'
 import Image from 'next/image'
-import Link from 'next/link'
-import { ArrowRight } from '@styled-icons/fluentui-system-regular/ArrowRight'
-import Counter from '@/components/Counter'
+import { useState } from 'react'
+import { PlusCircle } from '@styled-icons/feather/PlusCircle'
 
-const Equipe = () => {
+export type EquipeCardProps = {
+  id: string
+  nome: string
+  img: string
+  cargo1: string
+  cargo2: string
+  cargo3: string
+  cargo4: string
+}
+
+export type EquipeComponentProps = {
+  items: EquipeCardProps[]
+}
+
+const Equipe = ({ items }: EquipeComponentProps) => {
+  const [isOpen, setIsOpen] = useState(false)
+  const [editing, setEditing] = useState(new Set())
+
+  const handleExpand = (id: string) => {
+    setEditing((editing) => {
+      // Copy the set
+      editing = new Set(editing)
+      if (editing.has(id)) {
+        // Already editing, stop editing
+        editing.delete(id)
+      } else {
+        // Not editing, start
+        editing.add(id)
+      }
+      return editing
+    })
+  }
+
   // Animate useinview
   const [ref, springs] = useInView(
     () => ({
@@ -28,25 +52,6 @@ const Equipe = () => {
       },
       reverse: true,
       config: { duration: 800 }
-    }),
-    {
-      rootMargin: '-20% 0%'
-    }
-  )
-
-  const [imageRef, imageSprings] = useInView(
-    () => ({
-      from: {
-        opacity: 0,
-        y: 0
-      },
-      to: {
-        opacity: 1,
-        y: 10
-      },
-      reverse: true,
-      config: { duration: 800 },
-      delay: 0
     }),
     {
       rootMargin: '-20% 0%'
@@ -77,7 +82,7 @@ const Equipe = () => {
       <Container>
         <animated.div ref={ref} style={springs}>
           <S.Title>Nossa equipe</S.Title>
-          <S.imageWrapper ref={imageRef} style={imageSprings}>
+          <S.imageWrapper>
             <Image
               src="/images/equipe.jpg"
               alt="Recepção Aware"
@@ -88,94 +93,58 @@ const Equipe = () => {
             />
           </S.imageWrapper>
         </animated.div>
-
         <S.equipeWrapper ref={equipeRef} style={equipeSprings}>
-          <S.equipeItem>
-            <S.equipeImageWrapper ref={imageRef} style={imageSprings}>
-              <Image
-                src="/images/equipe/victor.jpg"
-                alt="Recepção Aware"
-                objectFit="cover"
-                layout="fill"
-                quality={100}
-                priority={true}
-              />
-            </S.equipeImageWrapper>
-            <S.equipePerson>João Victor Coito</S.equipePerson>
-            <S.equipeDescription>
-              Social Media <br />
-              Designer
-            </S.equipeDescription>
-          </S.equipeItem>
-          <S.equipeItem>
-            <S.equipeImageWrapper ref={imageRef} style={imageSprings}>
-              <Image
-                src="/images/equipe/andrey.jpg"
-                alt="Recepção Aware"
-                objectFit="cover"
-                layout="fill"
-                quality={100}
-                priority={true}
-              />
-            </S.equipeImageWrapper>
-            <S.equipePerson>Andrey Ricardo Schmidt</S.equipePerson>
-            <S.equipeDescription>Técnico de informática</S.equipeDescription>
-          </S.equipeItem>
-          <S.equipeItem>
-            <S.equipeImageWrapper ref={imageRef} style={imageSprings}>
-              <Image
-                src="/images/equipe/joao.jpg"
-                alt="Recepção Aware"
-                objectFit="cover"
-                layout="fill"
-                quality={100}
-                priority={true}
-              />
-            </S.equipeImageWrapper>
-            <S.equipePerson>João Victor Rockenbach</S.equipePerson>
-            <S.equipeDescription>
-              Sócio Administrador
-              <br />
-              Gestor de tráfego
-            </S.equipeDescription>
-          </S.equipeItem>
-          <S.equipeItem>
-            <S.equipeImageWrapper ref={imageRef} style={imageSprings}>
-              <Image
-                src="/images/equipe/hnrq.jpg"
-                alt="Recepção Aware"
-                objectFit="cover"
-                layout="fill"
-                quality={100}
-                priority={true}
-              />
-            </S.equipeImageWrapper>
-            <S.equipePerson>Luiz Henrique Cardoso</S.equipePerson>
-            <S.equipeDescription>
-              Fundador
-              <br />
-              Webdesigner
-              <br />
-              Programador fullstack
-            </S.equipeDescription>
-          </S.equipeItem>
-          <S.equipeItem>
-            <S.equipeImageWrapper ref={imageRef} style={imageSprings}>
-              <Image
-                src="/images/equipe/gustavo.jpg"
-                alt="Recepção Aware"
-                objectFit="cover"
-                layout="fill"
-                quality={100}
-                priority={true}
-              />
-            </S.equipeImageWrapper>
-            <S.equipePerson>Gustavo Brisola</S.equipePerson>
-            <S.equipeDescription>
-              Social Media <br />
-              Designer
-            </S.equipeDescription>
-          </S.equipeItem>
+          {items.map(({ id, nome, img, cargo1, cargo2, cargo3, cargo4 }) => (
+            <S.CardWrapper key={id}>
+              <div className="our-team">
+                <S.IconWrapper
+                  key={`thumb-${id}`}
+                  onClick={() => {
+                    handleExpand(id)
+                    setIsOpen(true)
+                  }}
+                  aria-hidden={!isOpen}
+                  isOpen={isOpen}
+                >
+                  {editing.has(id) ? (
+                    <PlusCircle
+                      aria-label="Open Modal"
+                      style={{ rotate: '45deg', color: '#323739' }}
+                    />
+                  ) : (
+                    <PlusCircle aria-label="Open Modal" />
+                  )}
+                </S.IconWrapper>
+                <div
+                  className="picture"
+                  onClick={() => {
+                    handleExpand(id)
+                    setIsOpen(true)
+                  }}
+                >
+                  <Image
+                    alt={nome}
+                    src={img}
+                    objectFit="cover"
+                    layout="fill"
+                    quality={100}
+                    priority={true}
+                  />
+                </div>
+                {editing.has(id) && (
+                  <S.CardFull aria-hidden={!isOpen} isOpen={isOpen}>
+                    <S.MenuNav>
+                      <S.equipePerson>{nome}</S.equipePerson>
+                      <S.Cargo>{cargo1}</S.Cargo>
+                      <S.Cargo>{cargo2}</S.Cargo>
+                      <S.Cargo>{cargo3}</S.Cargo>
+                      <S.Cargo>{cargo4}</S.Cargo>
+                    </S.MenuNav>
+                  </S.CardFull>
+                )}
+              </div>
+            </S.CardWrapper>
+          ))}
         </S.equipeWrapper>
       </Container>
     </Base>

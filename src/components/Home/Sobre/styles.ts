@@ -7,6 +7,9 @@ export const ColumnWrapper = styled.div`
   width: 100%;
   height: auto;
   position: relative;
+  ${media.lessThan('medium')`
+    flex-wrap: wrap;
+  `}
 `
 
 export const Column = styled.div`
@@ -57,7 +60,9 @@ export const ContactButton = styled.div`
       width: 100%;
     }
     ${media.lessThan('medium')`
+      position: relative;
       margin-left: 0;
+      margin-top: 0;
       font-size: ${theme.font.sizes.small};
     `}
   `}
@@ -71,10 +76,6 @@ export const Title = styled(animated.h1)`
     line-height: 8rem;
     margin-bottom: 2rem;
     transition: all 0.5s ease;
-    ${media.lessThan('huge')`
-      font-size: 7rem;
-      line-height: 6rem;
-    `}
     ${media.lessThan('medium')`
       width: 90%;
       line-height: 3rem;
@@ -117,8 +118,8 @@ export const Description = styled(animated.h2)`
     `}
     ${media.lessThan('medium')`
       width: 90%;
-      line-height: 3rem;
-      font-size: ${theme.font.sizes.huge};
+      line-height: ${theme.font.sizes.large};
+      font-size: ${theme.font.sizes.medium};
       margin-top: 0;
     `}
   `}
@@ -129,13 +130,16 @@ export const imageWrapper = styled(animated.div)`
   width: 95%;
   height: 40rem;
   margin-top: 2rem;
+  img {
+    object-fit: cover;
+  }
   ${media.lessThan('huge')`
     height: 40rem;
   `}
   ${media.lessThan('medium')`
     width: auto;
     height: 28rem;
-    width: 100%;
+    width: 95%;
   `}
 `
 
@@ -144,6 +148,11 @@ export const AutorityWrapper = styled(animated.div)`
   width: 100%;
   margin-top: 2rem;
   margin-bottom: 20rem;
+  ${media.lessThan('medium')`
+    display: flex;
+    margin-bottom: 10rem;
+    flex-wrap: wrap;
+  `}
 `
 export const AutorityItem = styled.div`
   position: relative;
@@ -151,11 +160,15 @@ export const AutorityItem = styled.div`
   width: 100%;
   height: auto;
   flex-direction: column;
+  ${media.lessThan('medium')`
+    width: 50%;
+    margin-bottom: 2rem;
+  `}
 `
 
 export const AutorityNumber = styled(animated.div)`
   ${({ theme }) => css`
-    width: 90%;
+    width: auto;
     color: ${theme.colors.primary};
     font-weight: ${theme.font.extraBold};
     font-size: 6rem;
@@ -189,9 +202,8 @@ export const AutorityDescription = styled(animated.h2)`
       line-height: auto;
     `}
     ${media.lessThan('medium')`
-      width: 100%;
-      line-height: 3rem;
-      font-size: ${theme.font.sizes.huge};
+      width: 50%;
+      font-size: ${theme.font.sizes.medium};
       margin-top: 0;
     `}
   `}

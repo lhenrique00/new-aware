@@ -4,6 +4,9 @@ import { animated } from '@react-spring/web'
 
 export const Wrapper = styled.div`
   margin-bottom: 20rem;
+  ${media.lessThan('medium')`
+    margin-bottom: 10rem;
+  `}
 `
 
 export const ColumnWrapper = styled.div`
@@ -22,12 +25,18 @@ export const Column = styled.div`
   width: 50%;
   height: auto;
   justify-content: center;
+  ${media.lessThan('medium')`
+    flex-direction: row;
+    width: 100%;
+    justify-content: start;
+  `}
 `
 
 export const Title = styled(animated.h1)`
   ${({ theme }) => css`
     color: ${theme.colors.primary};
     text-transform: uppercase;
+    font-weight: ${theme.font.extraBold};
     font-size: 9rem;
     line-height: 8rem;
     margin-bottom: 2rem;
@@ -37,7 +46,7 @@ export const Title = styled(animated.h1)`
       line-height: 5rem;
     `}
     ${media.lessThan('medium')`
-      width: 90%;
+      width: auto;
       line-height: 3rem;
       font-size: ${theme.font.sizes.huge};
       margin-top: 0;
@@ -54,10 +63,9 @@ export const Description = styled(animated.h2)`
     line-height: auto;
     transition: all 0.5s ease;
     ${media.lessThan('medium')`
-      width: 90%;
-      line-height: 3rem;
-      font-size: ${theme.font.sizes.huge};
-      margin-top: 0;
+      width: 50%;
+      line-height: ${theme.font.sizes.large};
+      font-size: ${theme.font.sizes.medium};
     `}
   `}
 `
@@ -65,31 +73,31 @@ export const Description = styled(animated.h2)`
 // CARROSSEL __________________________________________________________
 
 export const CarouselWrapper = styled.div`
-  ${({ theme }) => css`
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: auto;
-    margin-top: 2rem;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-top: 2rem;
+  .use-spring-carousel-item {
+    position: relative !important;
+    display: block !important;
+    width: 100% !important;
+  }
+  .use-spring-carousel-main-wrapper {
+    width: 60rem !important;
+  }
+  ${media.lessThan('medium')`
+      margin: 0;
+      margin-top: 4rem;
     .use-spring-carousel-item {
       position: relative !important;
       display: block !important;
       width: 100% !important;
     }
     .use-spring-carousel-main-wrapper {
-      width: 60rem !important;
+      width: 36rem !important;
     }
-    ${media.lessThan('huge')`
-      .use-spring-carousel-item {
-      position: relative !important;
-      display: block !important;
-      width: 100% !important;
-    }
-    .use-spring-carousel-main-wrapper {
-      width: 50rem !important;
-    }
-    `}
   `}
 `
 
@@ -104,8 +112,8 @@ export const CarouselDescription = styled.h2`
     transition: all 0.5s ease;
     ${media.lessThan('medium')`
       width: 90%;
-      line-height: 3rem;
-      font-size: ${theme.font.sizes.huge};
+      line-height: ${theme.font.sizes.large};
+      font-size: ${theme.font.sizes.medium};
       margin-top: 0;
     `}
   `}
@@ -124,7 +132,7 @@ export const Person = styled.h2`
     ${media.lessThan('medium')`
       width: 90%;
       line-height: 3rem;
-      font-size: ${theme.font.sizes.huge};
+      font-size: ${theme.font.sizes.xxlarge};
       margin-top: 0;
     `}
   `}
@@ -195,6 +203,10 @@ export const ItemsWrapper = styled.div`
   position: relative;
 
   cursor: grab;
+
+  ${media.lessThan('medium')`
+    width: 80%;
+  `}
 `
 
 export const Item = styled.div`
@@ -205,6 +217,10 @@ export const Item = styled.div`
   width: 60rem;
   height: auto;
   background-color: red;
+
+  ${media.lessThan('medium')`
+    width: 40rem;
+  `}
 `
 
 export const ItemWrapper = styled.div`
@@ -218,4 +234,9 @@ export const ItemWrapper = styled.div`
     color: black;
     width: 80%;
   }
+  ${media.lessThan('medium')`
+    hr {
+      width: 100%;
+    }
+  `}
 `

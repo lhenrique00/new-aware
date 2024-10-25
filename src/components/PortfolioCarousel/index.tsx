@@ -93,7 +93,7 @@ const PortfolioCarousel = ({ items }: PortfolioCarouselProps) => {
     <S.Wrapper>
       <Slider ref={slider} settings={settings}>
         {items.map((i) => (
-          <S.Item>
+          <S.Item key={i.id}>
             <S.ProfileWrapper>
               <S.imageWrapper>
                 <Image
@@ -108,11 +108,13 @@ const PortfolioCarousel = ({ items }: PortfolioCarouselProps) => {
               <S.Mask />
               <S.ProfileInfoWrapper>
                 <S.ProfileTitle>{i.title}</S.ProfileTitle>
-                {i.cattegory.map((c) => (
-                  <S.CattegoryWrapper key={c.id}>
-                    <S.CattegoryTitle>{c.title}</S.CattegoryTitle>
-                  </S.CattegoryWrapper>
-                ))}
+                <S.CattegoryWrapper>
+                  {i.cattegory.map((c) => (
+                    <>
+                      <S.CattegoryTitle key={c.id}>{c.title}</S.CattegoryTitle>
+                    </>
+                  ))}
+                </S.CattegoryWrapper>
                 <S.SocialWrapper>
                   <S.SocialItem>
                     <Link href="#" target="_blank">
